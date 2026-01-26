@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer components {
+    .text-gradient {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500;
+    }
+}

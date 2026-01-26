@@ -1,0 +1,75 @@
+---
+---
+
+<section id="info" class="relative py-24 bg-gray-950 overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20 pointer-events-none">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-red-900 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+        <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-blue-900 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center gap-16">
+            <!-- Image Side -->
+            <div class="w-full lg:w-1/2 relative group">
+                <div class="absolute inset-0 bg-red-600 rounded-2xl transform translate-x-3 translate-y-3 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300"></div>
+                <img 
+                    src="https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
+                    alt="Triathlete swimming" 
+                    class="relative rounded-2xl shadow-2xl w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                />
+            </div>
+
+            <!-- Text Side -->
+            <div class="w-full lg:w-1/2">
+                <h2 class="text-red-500 font-bold uppercase tracking-widest mb-2 text-sm">The Event</h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-white mb-6 font-outfit leading-tight">
+                    Challenge the <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Mythical Passes</span>
+                </h3>
+                <p class="text-gray-400 text-lg mb-6 leading-relaxed">
+                    Located between the Vosges mountains and the Alsace plain, the Elsassman Triathlon is more than a race—it's an emotional odyssey. Created by enthusiasts for enthusiasts, we invite you to conquer the legendary peaks of **Grand Ballon** and **Markstein**.
+                    <br/><br/>
+                    Whether you are fighting for the podium or simply to cross the finish line, the spirit of Elsassman is about pushing your limits in one of France's most beautiful landscapes.
+                </p>
+                <div class="grid grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <h4 class="text-3xl font-bold text-white mb-1">11th</h4>
+                        <p class="text-gray-500 text-sm uppercase tracking-wide">Edition</p>
+                    </div>
+                    <div>
+                        <h4 class="text-3xl font-bold text-white mb-1">5</h4>
+                        <p class="text-gray-500 text-sm uppercase tracking-wide">Race Formats</p>
+                    </div>
+                    <div>
+                        <h4 class="text-3xl font-bold text-white mb-1">2+</h4>
+                        <p class="text-gray-500 text-sm uppercase tracking-wide">Kids Races</p>
+                    </div>
+                    <div>
+                        <h4 class="text-3xl font-bold text-white mb-1">100%</h4>
+                        <p class="text-gray-500 text-sm uppercase tracking-wide">Passion</p>
+                    </div>
+                </div>
+                <a href="https://en.elsassman.com/_files/ugd/92dadc_42dc6684585947c9bb3b0c30955bbc9f.pdf" target="_blank" class="inline-flex items-center text-white border-b-2 border-red-600 pb-1 hover:text-red-500 transition-colors uppercase font-bold tracking-wider">
+                    Download Flyer
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .animate-blob {
+        animation: blob 7s infinite;
+    }
+    .animation-delay-2000 {
+        animation-delay: 2s;
+    }
+    @keyframes blob {
+        0% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -50px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+        100% { transform: translate(0px, 0px) scale(1); }
+    }
+</style>

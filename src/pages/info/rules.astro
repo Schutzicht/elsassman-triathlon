@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="Rules & Regulations | Elsassman Triathlon">
+    <Navbar />
+    
+    <main class="pt-32 pb-16 min-h-screen bg-gray-950">
+        <div class="container mx-auto px-4 max-w-4xl text-gray-300 leading-relaxed">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-8 font-outfit uppercase tracking-tighter text-center">
+                Rules & <span class="text-red-600">Regulations</span>
+            </h1>
+
+            <div class="bg-gray-900 border border-gray-800 rounded-2xl p-8 mb-8">
+                <h2 class="text-2xl font-bold text-white mb-4">General Conditions</h2>
+                <p class="mb-4">
+                    The Elsassman Triathlon is organized by the FAST Guebwiller club. It is sanctioned by the French Triathlon Federation (FFTRI). All participants must adhere to the FFTRI rules unless otherwise specified.
+                </p>
+                <p>
+                    By registering, participants acknowledge they are physically fit to complete the course and accept all risks associated with the event.
+                </p>
+            </div>
+
+            <div class="bg-gray-900 border border-gray-800 rounded-2xl p-8 mb-8">
+                <h2 class="text-2xl font-bold text-white mb-4">Medical Certificate</h2>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li>
+                        <strong>Licensed Athletes:</strong> Must provide a valid FFTRI license (or equivalent international triathlon license).
+                    </li>
+                    <li>
+                        <strong>Non-Licensed Athletes:</strong> Must provide a medical certificate dated less than one year prior to race day, stating "no contraindication to the practice of triathlon in competition".
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-gray-900 border border-gray-800 rounded-2xl p-8">
+                <h2 class="text-2xl font-bold text-white mb-4">Equipment</h2>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li>Wetsuits are mandatory if water temperature is below 16°C.</li>
+                    <li>Hard-shell helmets are mandatory on the bike course.</li>
+                    <li>Drafting is strictly forbidden on the Bike course (Format M & S).</li>
+                </ul>
+            </div>
+            
+             <div class="text-center mt-12">
+                <a href="#" class="inline-block px-8 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-full transition-colors border border-white/20">
+                    Download Full Rulebook (PDF)
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <Footer />
+</Layout>

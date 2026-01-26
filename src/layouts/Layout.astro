@@ -1,0 +1,31 @@
+---
+import '../styles/global.css';
+import StickyCTA from '../components/StickyCTA.astro';
+import '@fontsource/outfit/400.css';
+import '@fontsource/outfit/700.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/600.css';
+
+interface Props {
+	title: string;
+    description?: string;
+}
+
+const { title, description = "Elsassman Triathlon - Swim Fast, Bike Strong, Run to Win. The ultimate triathlon challenge in Alsace." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="bg-gray-950 text-white font-inter antialiased overflow-x-hidden">
+		<slot />
+        <StickyCTA />
+	</body>
+</html>

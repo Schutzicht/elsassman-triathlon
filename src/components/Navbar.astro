@@ -1,0 +1,152 @@
+---
+import { Menu, X } from 'lucide-astro';
+
+const links = [
+    { name: "Home", href: "/" },
+    { 
+        name: "Races", 
+        href: "#", 
+        dropdown: [
+            { name: "Distance M", href: "/races/distance-m" },
+            { name: "Distance S", href: "/races/distance-s" },
+            { name: "Kids / Avenir", href: "/races/kids" }
+        ]
+    },
+    { 
+        name: "Info", 
+        href: "#", 
+        dropdown: [
+            { name: "Program", href: "/info/schedule" },
+            { name: "Rules", href: "/info/rules" },
+            { name: "Results", href: "/info/results" }
+        ]
+    },
+    { name: "Contact", href: "/contact" },
+];
+---
+
+<div class="fixed top-0 left-0 w-full z-50 flex justify-center py-4 px-4 transition-all duration-300" id="navbar-container">
+    <header 
+        id="main-header" 
+        class="w-full max-w-5xl bg-gray-950/80 backdrop-blur-md border border-white/10 rounded-full px-6 py-3 shadow-2xl transition-all duration-300 relative"
+    >
+        <div class="flex items-center justify-between">
+            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse z-50">
+                <img 
+                    src="https://static.wixstatic.com/media/92dadc_7f1facba800c400bbf54d63deb452842~mv2.png/v1/crop/x_221,y_893,w_4560,h_1320/fill/w_176,h_53,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/elsassman%20V3_Plan%20de%20travail%2010.png" 
+                    alt="Elsassman Triathlon Logo" 
+                    class="h-10 w-auto transition-all duration-300"
+                    id="header-logo"
+                />
+            </a>
+            
+            <div class="flex md:order-2">
+                <!-- Mobile Menu Button -->
+                <button 
+                    data-collapse-toggle="navbar-sticky" 
+                    type="button" 
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-gray-400 rounded-full md:hidden hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-red-600" 
+                    aria-controls="navbar-sticky" 
+                    aria-expanded="false" 
+                    id="menu-toggle"
+                >
+                    <span class="sr-only">Open main menu</span>
+                    <Menu class="w-6 h-6" id="menu-icon-open" />
+                    <X class="w-6 h-6 hidden" id="menu-icon-close" />
+                </button>
+            </div>
+
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 absolute md:static top-full left-0 mt-2 md:mt-0 px-4 md:px-0 bg-gray-900 md:bg-transparent rounded-xl md:rounded-none border md:border-0 border-gray-800 md:shadow-none shadow-xl w-[calc(100%-2rem)] md:w-auto mx-4 md:mx-0" id="navbar-sticky">
+                <ul class="flex flex-col p-4 md:p-0 font-medium md:space-x-8 rtl:space-x-reverse md:flex-row">
+                    {links.map((link) => (
+                        <li class="relative group">
+                            {link.dropdown ? (
+                                <>
+                                    <button class="flex items-center justify-between w-full py-2 px-3 text-gray-300 rounded hover:bg-gray-800 md:hover:bg-transparent md:border-0 md:hover:text-red-600 md:p-0 md:w-auto transition-colors duration-200 uppercase tracking-widest text-sm font-semibold group-hover:text-red-600">
+                                        {link.name}
+                                        <svg class="w-2.5 h-2.5 ms-2.5 transition-transform group-hover:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                                        </svg>
+                                    </button>
+                                    <!-- Dropdown menu -->
+                                    <div class="z-50 hidden font-normal bg-gray-900 divide-y divide-gray-100 rounded-lg shadow w-44 group-hover:block md:absolute md:top-full md:left-1/2 md:-translate-x-1/2 md:pt-4">
+                                        <div class="bg-gray-950 border border-gray-800 rounded-xl overflow-hidden shadow-xl">
+                                            <ul class="py-2 text-sm text-gray-400">
+                                                {link.dropdown.map((subLink) => (
+                                                    <li>
+                                                        <a href={subLink.href} class="block px-4 py-2 hover:bg-red-600 hover:text-white transition-colors text-center">
+                                                            {subLink.name}
+                                                        </a>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </>
+                            ) : (
+                                <a 
+                                    href={link.href} 
+                                    class="block py-2 px-3 rounded md:p-0 text-gray-300 hover:text-red-600 hover:bg-gray-800 md:hover:bg-transparent transition-colors duration-200 uppercase tracking-widest text-sm font-semibold text-center md:text-left"
+                                >
+                                    {link.name}
+                                </a>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    </header>
+</div>
+
+<script>
+    const container = document.getElementById('navbar-container');
+    const header = document.getElementById('main-header');
+    const logo = document.getElementById('header-logo');
+    const menuToggle = document.getElementById('menu-toggle');
+    const navbarSticky = document.getElementById('navbar-sticky');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    // Scroll Effect
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            // Shrink state
+            container?.classList.remove('py-4');
+            container?.classList.add('py-2');
+            header?.classList.add('bg-gray-950/90', 'border-red-600/50'); // Darker bg, red border hint
+            header?.classList.remove('bg-gray-950/80', 'max-w-5xl');
+            header?.classList.add('max-w-3xl'); // Shrink width
+            logo?.classList.remove('h-10');
+            logo?.classList.add('h-8');
+        } else {
+            // Expanded state
+            container?.classList.add('py-4');
+            container?.classList.remove('py-2');
+            header?.classList.remove('bg-gray-950/90', 'border-red-600/50', 'max-w-3xl');
+            header?.classList.add('bg-gray-950/80', 'max-w-5xl');
+            logo?.classList.add('h-10');
+            logo?.classList.remove('h-8');
+        }
+    });
+
+    // Mobile Menu
+    if (menuToggle && navbarSticky && menuIconOpen && menuIconClose) {
+        menuToggle.addEventListener('click', () => {
+            const isHidden = navbarSticky.classList.contains('hidden');
+            if (isHidden) {
+                // Open menu
+                navbarSticky.classList.remove('hidden');
+                menuIconOpen.classList.add('hidden');
+                menuIconClose.classList.remove('hidden');
+                // Ensure container doesn't overlap excessively if needed, 
+                // but mostly the mobile menu is absolute positioned below.
+            } else {
+                // Close menu
+                navbarSticky.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            }
+        });
+    }
+</script>

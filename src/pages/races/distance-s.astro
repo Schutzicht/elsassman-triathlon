@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="Distance S | Elsassman Triathlon">
+    <Navbar />
+    
+    <main class="pt-32 pb-16 min-h-screen bg-gray-950">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 font-outfit uppercase tracking-tighter">
+                Distance <span class="text-red-600">S</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-12">
+                Discovery. 650m Swim, 23.9km Bike through vineyards, and 5.2km Run. Fast and furious.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8 text-left max-w-4xl mx-auto">
+                <div class="bg-gray-900 border border-gray-800 rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-4">Swim</h2>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>• 650m (1 loop)</li>
+                        <li>• Location: Plan d'eau, Ensisheim</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-900 border border-gray-800 rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-4">Bike</h2>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>• 23.9km</li>
+                         <li>• Flat & Rolling</li>
+                        <li>• Through Alsace vineyards</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-gray-900 border border-gray-800 rounded-2xl p-8 max-w-4xl mx-auto">
+                <h2 class="text-2xl font-bold text-white mb-4">Course Map</h2>
+                <div class="overflow-hidden rounded-lg border border-gray-700">
+                    <img 
+                        src="/assets/course_map_placeholder.png" 
+                        alt="Distance S Course Map coverage" 
+                        class="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
+                    />
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <Footer />
+</Layout>

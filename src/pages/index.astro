@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import RaceCard from '../components/RaceCard.astro';
+import SocialFeed from '../components/SocialFeed.astro';
+import Footer from '../components/Footer.astro';
+
+const races = [
+    {
+        title: "Distance M",
+        distance: "1.5km Swim / 40km Bike / 10km Run",
+        description: "The Legend. Tackle the mythic Grand Ballon and Markstein passes. A true test of endurance.",
+        link: "https://en.elsassman.com/distance-m",
+        delay: "0"
+    },
+    {
+        title: "Distance S - Discovery",
+        distance: "650m Swim / 23.9km Bike / 5.2km Run",
+        description: "Speed & Scenery. Swim in Ensisheim, ride through vineyards, and run to the finish line.",
+        link: "https://en.elsassman.com/s-decouverte",
+        delay: "100"
+    },
+    {
+        title: "Avenir 1 - Kids",
+        distance: "8-11 Years old",
+        description: "For the youngest champions (Poussins / Pupilles). 100m Swim / 2km Bike / 900m Run.",
+        link: "https://en.elsassman.com/avenir-1",
+        delay: "200"
+    },
+    {
+        title: "Avenir 2 - Youth",
+        distance: "12-19 Years old",
+        description: "The next generation (Benjamins to Juniors). 200m Swim / 4km Bike / 1.5km Run.",
+        link: "https://en.elsassman.com/avenir-2",
+        delay: "300"
+    }
+];
+---
+
+<Layout title="Elsassman Triathlon | Swim Fast, Bike Strong, Run to Win">
+	<Navbar />
+	
+	<main>
+		<Hero />
+		<About />
+		
+		<!-- Races Section -->
+		<section id="races" class="py-24 bg-gray-900 border-t border-gray-800">
+			<div class="container mx-auto px-4">
+				<div class="text-center mb-16 max-w-3xl mx-auto">
+                    <span class="text-red-500 font-bold uppercase tracking-widest text-sm mb-2 block">Choose Your Challenge</span>
+					<h2 class="text-4xl md:text-5xl font-bold text-white font-outfit mb-6">Our Races</h2>
+					<p class="text-gray-400 text-lg">
+                        Whether you are a seasoned pro or a first-timer, there is a race for you. Join us in July 2026.
+                    </p>
+				</div>
+				
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+					{races.map(race => (
+						<RaceCard {...race} />
+					))}
+				</div>
+			</div>
+		</section>
+
+        <!-- CTA / Contact Section -->
+        <section id="contact" class="py-24 relative overflow-hidden flex items-center justify-center bg-gray-950">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" alt="Triathlon Finish Line" class="w-full h-full object-cover opacity-20 filter grayscale" />
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/80 to-transparent"></div>
+            </div>
+            
+            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                <h2 class="text-4xl md:text-6xl font-bold text-white mb-8 font-outfit uppercase tracking-tighter">Are you ready <br/>to make <span class="text-red-600">history</span>?</h2>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a href="https://en.elsassman.com/inscriptions" target="_blank" class="px-10 py-5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full uppercase tracking-wider text-lg transition-all transform hover:scale-105 shadow-xl shadow-red-900/40">
+                        Register Now
+                    </a>
+                    <a href="mailto:inscription@fast-guebwiller.com" class="px-10 py-5 bg-white text-gray-900 hover:bg-gray-100 font-bold rounded-full uppercase tracking-wider text-lg transition-all transform hover:scale-105">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <SocialFeed />
+	</main>
+	
+	<Footer />
+</Layout>

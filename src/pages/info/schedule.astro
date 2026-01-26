@@ -1,0 +1,75 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="Program & Schedule | Elsassman Triathlon">
+    <Navbar />
+    
+    <main class="pt-32 pb-16 min-h-screen bg-gray-950">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-8 font-outfit uppercase tracking-tighter text-center">
+                Weekend <span class="text-red-600">Schedule</span>
+            </h1>
+
+            <div class="space-y-8">
+                <!-- Day 1 -->
+                <div class="bg-gray-900 border-l-4 border-red-600 rounded-r-xl p-6">
+                    <h2 class="text-2xl font-bold text-white mb-4">Saturday, July 19, 2026</h2>
+                    <ul class="space-y-4">
+                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
+                            <span class="text-red-500 font-bold text-xl">09:00</span>
+                            <span class="text-gray-300 font-medium">Race Bib Collection (All Races)</span>
+                            <span class="text-gray-500 text-sm">Nautilia, Guebwiller</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
+                            <span class="text-red-500 font-bold text-xl">13:30</span>
+                            <span class="text-gray-300 font-medium">Start: Avenir 1 (Kids)</span>
+                            <span class="text-gray-500 text-sm">Ensisheim</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
+                            <span class="text-red-500 font-bold text-xl">14:30</span>
+                            <span class="text-gray-300 font-medium">Start: Avenir 2 (Youth)</span>
+                            <span class="text-gray-500 text-sm">Ensisheim</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
+                            <span class="text-red-500 font-bold text-xl">16:00</span>
+                            <span class="text-gray-300 font-medium">Start: Distance S</span>
+                            <span class="text-gray-500 text-sm">Ensisheim</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="bg-gray-900 border-l-4 border-yellow-500 rounded-r-xl p-6">
+                    <h2 class="text-2xl font-bold text-white mb-4">Sunday, July 20, 2026</h2>
+                     <ul class="space-y-4">
+                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
+                            <span class="text-yellow-500 font-bold text-xl">08:00</span>
+                            <span class="text-gray-300 font-medium">Bike Park Opening</span>
+                            <span class="text-gray-500 text-sm">Ensisheim</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
+                            <span class="text-yellow-500 font-bold text-xl">09:30</span>
+                            <span class="text-gray-300 font-medium">Start: Distance M</span>
+                            <span class="text-gray-500 text-sm">Ensisheim</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
+                            <span class="text-yellow-500 font-bold text-xl">14:00</span>
+                            <span class="text-gray-300 font-medium">First Finishers Expected</span>
+                            <span class="text-gray-500 text-sm">Guebwiller</span>
+                        </li>
+                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
+                            <span class="text-yellow-500 font-bold text-xl">16:30</span>
+                            <span class="text-gray-300 font-medium">Podium Ceremony</span>
+                            <span class="text-gray-500 text-sm">Nautilia</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <Footer />
+</Layout>
