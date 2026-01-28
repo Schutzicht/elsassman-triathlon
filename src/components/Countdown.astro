@@ -1,53 +1,44 @@
----
----
-
-<div class="flex flex-wrap justify-center gap-4 sm:gap-8 mt-12 animate-fade-in-up delay-600">
-    <div class="text-center group">
-        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gray-900/50 backdrop-blur-md border border-red-900/30 rounded-lg flex items-center justify-center mb-2 group-hover:border-red-600 transition-colors shadow-lg">
-            <span class="text-2xl sm:text-3xl font-bold text-white font-outfit" id="days">00</span>
-        </div>
-        <span class="text-xs uppercase tracking-widest text-gray-400">Days</span>
-    </div>
-    <div class="text-center group">
-        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gray-900/50 backdrop-blur-md border border-red-900/30 rounded-lg flex items-center justify-center mb-2 group-hover:border-red-600 transition-colors shadow-lg">
-            <span class="text-2xl sm:text-3xl font-bold text-white font-outfit" id="hours">00</span>
-        </div>
-        <span class="text-xs uppercase tracking-widest text-gray-400">Hrs</span>
-    </div>
-    <div class="text-center group">
-        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gray-900/50 backdrop-blur-md border border-red-900/30 rounded-lg flex items-center justify-center mb-2 group-hover:border-red-600 transition-colors shadow-lg">
-            <span class="text-2xl sm:text-3xl font-bold text-white font-outfit" id="minutes">00</span>
-        </div>
-        <span class="text-xs uppercase tracking-widest text-gray-400">Min</span>
-    </div>
-    <div class="text-center group">
-        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gray-900/50 backdrop-blur-md border border-red-900/30 rounded-lg flex items-center justify-center mb-2 group-hover:border-red-600 transition-colors shadow-lg">
-            <span class="text-2xl sm:text-3xl font-bold text-white font-outfit" id="seconds">00</span>
-        </div>
-        <span class="text-xs uppercase tracking-widest text-gray-400">Sec</span>
-    </div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto my-12" id="countdown">
+  <div class="glass-panel p-4 rounded-lg text-center">
+    <div class="text-4xl md:text-6xl font-black text-white mb-2" id="days">00</div>
+    <div class="text-xs md:text-sm uppercase tracking-widest text-gray-400">Days</div>
+  </div>
+  <div class="glass-panel p-4 rounded-lg text-center">
+    <div class="text-4xl md:text-6xl font-black text-brand-primary mb-2" id="hours">00</div>
+    <div class="text-xs md:text-sm uppercase tracking-widest text-gray-400">Hours</div>
+  </div>
+  <div class="glass-panel p-4 rounded-lg text-center">
+    <div class="text-4xl md:text-6xl font-black text-brand-secondary mb-2" id="minutes">00</div>
+    <div class="text-xs md:text-sm uppercase tracking-widest text-gray-400">Minutes</div>
+  </div>
+  <div class="glass-panel p-4 rounded-lg text-center">
+    <div class="text-4xl md:text-6xl font-black text-white mb-2" id="seconds">00</div>
+    <div class="text-xs md:text-sm uppercase tracking-widest text-gray-400">Seconds</div>
+  </div>
 </div>
 
 <script>
-    // Set the date we're counting down to (July 19, 2026)
-    // Note: Assuming 2026 based on user prompt/artifacts
-    const raceDate = new Date("July 19, 2026 08:00:00").getTime();
+  function updateCountdown() {
+    const targetDate = new Date('2026-07-11T08:00:00').getTime();
+    const now = new Date().getTime();
+    const distance = targetDate - now;
 
-    const updateCountdown = () => {
-        const now = new Date().getTime();
-        const distance = raceDate - now;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const elDays = document.getElementById('days');
+    const elHours = document.getElementById('hours');
+    const elMinutes = document.getElementById('minutes');
+    const elSeconds = document.getElementById('seconds');
 
-        document.getElementById("days")!.innerText = days.toString().padStart(2, '0');
-        document.getElementById("hours")!.innerText = hours.toString().padStart(2, '0');
-        document.getElementById("minutes")!.innerText = minutes.toString().padStart(2, '0');
-        document.getElementById("seconds")!.innerText = seconds.toString().padStart(2, '0');
-    };
+    if (elDays) elDays.innerText = String(days).padStart(2, '0');
+    if (elHours) elHours.innerText = String(hours).padStart(2, '0');
+    if (elMinutes) elMinutes.innerText = String(minutes).padStart(2, '0');
+    if (elSeconds) elSeconds.innerText = String(seconds).padStart(2, '0');
+  }
 
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
 </script>

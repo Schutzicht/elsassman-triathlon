@@ -1,75 +1,74 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
-import Footer from '../../components/Footer.astro';
+
+const schedule = {
+    saturday: [
+        { time: "09:15", event: "Bike Park Open", category: "Distance S / Kids", type: "logistics" },
+        { time: "10:15", event: "Briefing", category: "Distance S", type: "briefing" },
+        { time: "10:30", event: "START - Distance S", category: "Distance S", type: "race" },
+        { time: "13:00", event: "Awards Ceremony", category: "Distance S", type: "awards" },
+        { time: "14:00", event: "Bike Park Open", category: "Avenir 1 & 2", type: "logistics" },
+        { time: "14:45", event: "START - Avenir 1 (6-9 yo)", category: "Avenir 1", type: "race" },
+        { time: "15:30", event: "START - Avenir 2 (10-13 yo)", category: "Avenir 2", type: "race" },
+        { time: "16:30", event: "Awards Ceremony", category: "Kids", type: "awards" }
+    ],
+    sunday: [
+        { time: "06:45", event: "Bike Park Open", category: "Distance L", type: "logistics" },
+        { time: "08:00", event: "START - Distance L", category: "Distance L", type: "race" },
+        { time: "10:00", event: "Bike Park Open", category: "Distance M", type: "logistics" },
+        { time: "11:15", event: "START - Distance M", category: "Distance M", type: "race" },
+        { time: "16:00", event: "Awards Ceremony (M & L)", category: "Distance M & L", type: "awards" }
+    ]
+};
 ---
 
-<Layout title="Program & Schedule | Elsassman Triathlon">
+<Layout title="Schedule - Elsassman Triathlon">
     <Navbar />
     
-    <main class="pt-32 pb-16 min-h-screen bg-gray-950">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-8 font-outfit uppercase tracking-tighter text-center">
-                Weekend <span class="text-red-600">Schedule</span>
-            </h1>
+    <main class="pt-32 pb-20 container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-black uppercase mb-4 text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">Race Schedule</h1>
+            <p class="text-xl text-gray-400">Plan your weekend at the Elsassman.</p>
+        </div>
 
-            <div class="space-y-8">
-                <!-- Day 1 -->
-                <div class="bg-gray-900 border-l-4 border-red-600 rounded-r-xl p-6">
-                    <h2 class="text-2xl font-bold text-white mb-4">Saturday, July 19, 2026</h2>
-                    <ul class="space-y-4">
-                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
-                            <span class="text-red-500 font-bold text-xl">09:00</span>
-                            <span class="text-gray-300 font-medium">Race Bib Collection (All Races)</span>
-                            <span class="text-gray-500 text-sm">Nautilia, Guebwiller</span>
-                        </li>
-                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
-                            <span class="text-red-500 font-bold text-xl">13:30</span>
-                            <span class="text-gray-300 font-medium">Start: Avenir 1 (Kids)</span>
-                            <span class="text-gray-500 text-sm">Ensisheim</span>
-                        </li>
-                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
-                            <span class="text-red-500 font-bold text-xl">14:30</span>
-                            <span class="text-gray-300 font-medium">Start: Avenir 2 (Youth)</span>
-                            <span class="text-gray-500 text-sm">Ensisheim</span>
-                        </li>
-                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
-                            <span class="text-red-500 font-bold text-xl">16:00</span>
-                            <span class="text-gray-300 font-medium">Start: Distance S</span>
-                            <span class="text-gray-500 text-sm">Ensisheim</span>
-                        </li>
-                    </ul>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <!-- Saturday -->
+            <div>
+                <h2 class="text-3xl font-black text-white uppercase mb-8 border-b border-white/10 pb-4">Saturday <span class="text-brand-primary">July 11</span></h2>
+                <div class="space-y-0 relative border-l border-white/10 ml-4 pl-8 py-2">
+                    {schedule.saturday.map(item => (
+                        <div class="relative mb-10 last:mb-0 group">
+                            <span class={`absolute -left-[39px] top-1 w-5 h-5 rounded-full border-4 border-gray-950 transition-colors duration-300 ${
+                                item.type === 'race' ? 'bg-red-500' : 
+                                item.type === 'awards' ? 'bg-yellow-400' : 'bg-gray-600'
+                            }`}></span>
+                            <div class="time text-sm font-mono text-gray-400 mb-1">{item.time}</div>
+                            <h3 class={`text-xl font-bold ${item.type === 'race' ? 'text-white text-2xl' : 'text-gray-200'}`}>{item.event}</h3>
+                            <div class="text-xs font-bold uppercase tracking-wider text-brand-primary mt-1">{item.category}</div>
+                        </div>
+                    ))}
                 </div>
+            </div>
 
-                <!-- Day 2 -->
-                <div class="bg-gray-900 border-l-4 border-yellow-500 rounded-r-xl p-6">
-                    <h2 class="text-2xl font-bold text-white mb-4">Sunday, July 20, 2026</h2>
-                     <ul class="space-y-4">
-                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
-                            <span class="text-yellow-500 font-bold text-xl">08:00</span>
-                            <span class="text-gray-300 font-medium">Bike Park Opening</span>
-                            <span class="text-gray-500 text-sm">Ensisheim</span>
-                        </li>
-                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
-                            <span class="text-yellow-500 font-bold text-xl">09:30</span>
-                            <span class="text-gray-300 font-medium">Start: Distance M</span>
-                            <span class="text-gray-500 text-sm">Ensisheim</span>
-                        </li>
-                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
-                            <span class="text-yellow-500 font-bold text-xl">14:00</span>
-                            <span class="text-gray-300 font-medium">First Finishers Expected</span>
-                            <span class="text-gray-500 text-sm">Guebwiller</span>
-                        </li>
-                        <li class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-800 pb-2">
-                            <span class="text-yellow-500 font-bold text-xl">16:30</span>
-                            <span class="text-gray-300 font-medium">Podium Ceremony</span>
-                            <span class="text-gray-500 text-sm">Nautilia</span>
-                        </li>
-                    </ul>
+            <!-- Sunday -->
+             <div>
+                <h2 class="text-3xl font-black text-white uppercase mb-8 border-b border-white/10 pb-4">Sunday <span class="text-brand-secondary">July 12</span></h2>
+                <div class="space-y-0 relative border-l border-white/10 ml-4 pl-8 py-2">
+                    {schedule.sunday.map(item => (
+                        <div class="relative mb-10 last:mb-0 group">
+                            <span class={`absolute -left-[39px] top-1 w-5 h-5 rounded-full border-4 border-gray-950 transition-colors duration-300 ${
+                                item.type === 'race' ? 'bg-red-500' : 
+                                item.type === 'awards' ? 'bg-yellow-400' : 'bg-gray-600'
+                            }`}></span>
+                            <div class="time text-sm font-mono text-gray-400 mb-1">{item.time}</div>
+                            <h3 class={`text-xl font-bold ${item.type === 'race' ? 'text-white text-2xl' : 'text-gray-200'}`}>{item.event}</h3>
+                            <div class="text-xs font-bold uppercase tracking-wider text-brand-secondary mt-1">{item.category}</div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
     </main>
-
-    <Footer />
+    
 </Layout>

@@ -1,65 +1,109 @@
 ---
 ---
 
-<footer class="bg-gray-950 border-t border-white/10 mt-auto">
-    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-        <div class="md:flex md:justify-between">
-          <div class="mb-6 md:mb-0">
-              <a href="/" class="flex items-center">
-                  <span class="self-center text-3xl font-outfit font-bold whitespace-nowrap text-white uppercase tracking-tighter">
-                    Elsass<span class="text-red-600">man</span>
-                  </span>
-              </a>
-              <p class="mt-4 text-gray-400 max-w-xs text-sm">
-                Swim fast, bike strong, run to win. The ultimate triathlon challenge in the heart of Alsace.
-              </p>
-          </div>
-          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-              <div>
-                  <h2 class="mb-6 text-sm font-semibold uppercase text-white">Races</h2>
-                  <ul class="text-gray-400 font-medium text-sm">
-                      <li class="mb-4">
-                          <a href="/#races" class="hover:underline hover:text-white transition-colors">Format L</a>
-                      </li>
-                      <li class="mb-4">
-                          <a href="/#races" class="hover:underline hover:text-white transition-colors">Format M</a>
-                      </li>
-                      <li>
-                        <a href="/#races" class="hover:underline hover:text-white transition-colors">Format S</a>
-                    </li>
-                  </ul>
-              </div>
-              <div>
-                  <h2 class="mb-6 text-sm font-semibold uppercase text-white">Follow us</h2>
-                  <ul class="text-gray-400 font-medium text-sm">
-                      <li class="mb-4">
-                          <a href="#" class="hover:underline hover:text-white transition-colors">Facebook</a>
-                      </li>
-                      <li>
-                          <a href="#" class="hover:underline hover:text-white transition-colors">Instagram</a>
-                      </li>
-                  </ul>
-              </div>
-              <div>
-                  <h2 class="mb-6 text-sm font-semibold uppercase text-white">Legal</h2>
-                  <ul class="text-gray-400 font-medium text-sm">
-                      <li class="mb-4">
-                          <a href="#" class="hover:underline hover:text-white transition-colors">Privacy Policy</a>
-                      </li>
-                      <li>
-                          <a href="#" class="hover:underline hover:text-white transition-colors">Terms & Conditions</a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-      <hr class="my-6 border-gray-800 sm:mx-auto lg:my-8" />
-      <div class="sm:flex sm:items-center sm:justify-between text-center sm:text-left">
-          <span class="text-sm text-gray-500 sm:text-center">© 2026 <a href="https://elsassman.com/" class="hover:underline">Elsassman™</a>. All Rights Reserved. <span class="hidden sm:inline">|</span> <span class="block sm:inline mt-2 sm:mt-0">Build by <a href="https://zee-zicht.nl" target="_blank" class="text-white hover:text-red-600 transition-colors font-bold">zee-zicht</a></span>
-          </span>
-          <div class="flex mt-4 sm:justify-center sm:mt-0 justify-center space-x-5 rtl:space-x-reverse">
-                <!-- Social Icons would go here -->
-          </div>
-      </div>
+<footer class="fixed bottom-0 left-0 w-full h-[500px] bg-black text-white z-0 flex flex-col justify-between overflow-hidden" id="main-footer">
+    <!-- Marquee Background -->
+    <div class="absolute top-0 left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none">
+        <div class="whitespace-nowrap animate-marquee text-[20vw] font-black uppercase leading-none font-outfit text-white">
+            Elsassman • Swim • Bike • Run • Elsassman • Swim • Bike • Run •
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 pt-20 relative z-10 h-full flex flex-col justify-between pb-8">
+        
+        <!-- Top Section: C2A & Links -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <!-- Brand & Tagline -->
+            <div class="lg:col-span-4 space-y-6">
+                <a href="/" class="block">
+                    <span class="text-5xl font-black uppercase tracking-tighter font-outfit">
+                        Elsass<span class="text-brand-primary">man</span>
+                    </span>
+                </a>
+                <p class="text-2xl font-light text-gray-400 max-w-sm">
+                    Dare to face the <span class="text-white font-bold">myth</span>.
+                    <br>July 11 & 12, 2026
+                </p>
+                <div class="flex gap-4 pt-4">
+                    <a href="https://www.facebook.com/elsassman" target="_blank" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300">FB</a>
+                    <a href="https://www.instagram.com/elsassman/" target="_blank" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300">IG</a>
+                </div>
+            </div>
+
+            <!-- Navigation (Big Hover Links) -->
+            <div class="lg:col-span-4 flex flex-col justify-center space-y-2">
+                <a href="/races/distance-l" class="text-3xl md:text-4xl font-black uppercase text-gray-500 hover:text-white hover:translate-x-4 transition-all duration-300 flex items-center gap-4 group">
+                    <span class="w-2 h-2 rounded-full bg-brand-primary opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    Races
+                </a>
+                <a href="/info/schedule" class="text-3xl md:text-4xl font-black uppercase text-gray-500 hover:text-white hover:translate-x-4 transition-all duration-300 flex items-center gap-4 group">
+                    <span class="w-2 h-2 rounded-full bg-brand-secondary opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    Schedule
+                </a>
+                <a href="/info/results" class="text-3xl md:text-4xl font-black uppercase text-gray-500 hover:text-white hover:translate-x-4 transition-all duration-300 flex items-center gap-4 group">
+                    <span class="w-2 h-2 rounded-full bg-white opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    Results
+                </a>
+                 <a href="/contact" class="text-3xl md:text-4xl font-black uppercase text-gray-500 hover:text-white hover:translate-x-4 transition-all duration-300 flex items-center gap-4 group">
+                    <span class="w-2 h-2 rounded-full bg-brand-primary opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    Contact
+                </a>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="lg:col-span-4 flex flex-col justify-center">
+                <h3 class="text-sm font-bold uppercase tracking-widest text-gray-400 mb-6">Stay Updated</h3>
+                <form class="space-y-4">
+                    <div class="relative group">
+                        <input type="email" placeholder="YOUR EMAIL ADDRESS" class="w-full bg-transparent border-b border-white/20 py-4 text-xl font-bold uppercase placeholder-gray-600 text-white focus:outline-none focus:border-brand-primary transition-colors peer" />
+                        <button type="submit" class="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-primary transition-colors opacity-0 peer-focus:opacity-100 peer-placeholder-shown:opacity-100">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-600">
+                        Join the community. No spam, just adrenaline.
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="flex flex-col md:flex-row justify-between items-end md:items-center pt-8 border-t border-white/10 mt-auto">
+            <div class="text-xs text-gray-500 font-mono">
+                &copy; 2026 ELSASSMAN TRIATHLON. ALL RIGHTS RESERVED.
+            </div>
+            <div class="flex gap-6 text-xs font-bold uppercase tracking-widest text-gray-600">
+                <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                <a href="#" class="hover:text-white transition-colors">Terms</a>
+                <a href="https://zee-zicht.nl" target="_blank" class="hover:text-brand-primary transition-colors">Site by Zee-Zicht</a>
+            </div>
+        </div>
     </div>
 </footer>
+
+<script>
+    // JS to adjust main content margin dynamically based on footer height
+    function adjustMargin() {
+        const footer = document.getElementById('main-footer');
+        const mainContent = document.getElementById('main-content');
+        if (footer && mainContent) {
+            mainContent.style.marginBottom = `${footer.offsetHeight}px`;
+        }
+    }
+
+    window.addEventListener('resize', adjustMargin);
+    window.addEventListener('load', adjustMargin);
+    // document.addEventListener('astro:page-load', adjustMargin); // If using ViewTransitions
+    adjustMargin();
+</script>
+
+<style>
+    .animate-marquee {
+        animation: marquee 20s linear infinite;
+    }
+
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+</style>

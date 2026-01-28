@@ -1,0 +1,141 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro'; // Layout handles it, but good for explicit dependency if moved out
+import Map from '../../components/Map.astro';
+import { races } from '../../data/races';
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'distance-m' } },
+    { params: { slug: 'distance-s' } },
+    { params: { slug: 'distance-l' } },
+    { params: { slug: 'avenir-1' } },
+    { params: { slug: 'avenir-2' } },
+  ];
+}
+
+const { slug } = Astro.params;
+const race = races[slug as keyof typeof races];
+
+if (!race) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title={`${race.title} - Elsassman Triathlon`}>
+  <Navbar />
+  
+  <main class="pt-24 pb-12">
+    <!-- Hero Header -->
+    <section class="relative py-20 px-4 overflow-hidden mb-12">
+      <div class={`absolute inset-0 opacity-10 bg-gradient-to-br ${race.color}`}></div>
+      <div class="container mx-auto max-w-5xl relative z-10">
+        <div class="inline-block px-3 py-1 mb-4 border border-white/20 rounded-full text-xs font-bold uppercase tracking-widest text-white/80">
+            {slug === 'distance-l' || slug === 'distance-m' || slug === 'distance-s' ? 'Adult Race' : 'Kids Race'}
+        </div>
+        <h1 class="text-6xl md:text-8xl font-black uppercase mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+          {race.title}
+        </h1>
+        <p class={`text-2xl md:text-3xl font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r ${race.color} mb-8`}>
+          {race.subtitle}
+        </p>
+        <p class="text-xl text-gray-300 max-w-2xl leading-relaxed mb-8">
+          {race.longDescription || race.description}
+        </p>
+        
+        <div class="flex flex-wrap gap-4">
+            <a href="https://www.elsassman.com/inscriptions" class="btn-primary">Register Now</a>
+            {race.gpx?.swim && <a href={race.gpx.swim} target="_blank" class="px-6 py-3 border border-white/20 rounded-none uppercase font-bold text-sm hover:bg-white hover:text-black transition-colors">GPX Swim</a>}
+        </div>
+      </div>
+    </section>
+
+    <!-- Details Grid -->
+    <section class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+      <!-- Distances -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors">
+        <h3 class="text-gray-400 uppercase tracking-widest text-sm font-bold mb-6">Course Distances</h3>
+        <ul class="space-y-6">
+            <li class="flex items-center gap-6">
+                <span class="w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl font-bold">S</span>
+                <div>
+                    <span class="block text-2xl font-bold text-white">{race.swim}</span>
+                    <span class="text-xs text-gray-500 uppercase">Swim</span>
+                </div>
+            </li>
+            <li class="flex items-center gap-6">
+                <span class="w-12 h-12 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-xl font-bold">B</span>
+                <div>
+                    <span class="block text-2xl font-bold text-white">{race.bike}</span>
+                    <span class="text-xs text-gray-500 uppercase">Bike</span>
+                </div>
+            </li>
+            <li class="flex items-center gap-6">
+                <span class="w-12 h-12 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-xl font-bold">R</span>
+                <div>
+                    <span class="block text-2xl font-bold text-white">{race.run}</span>
+                    <span class="text-xs text-gray-500 uppercase">Run</span>
+                </div>
+            </li>
+        </ul>
+        
+        {race.gpx && (
+            <div class="mt-8 pt-6 border-t border-white/10 flex flex-col gap-3">
+                <h4 class="text-xs font-bold uppercase text-gray-500 mb-2">Download Courses</h4>
+                <div class="flex gap-2">
+                    {race.gpx.bike && <a href={race.gpx.bike} class="text-xs bg-white/10 hover:bg-brand-primary hover:text-black px-3 py-2 rounded transition-colors">GPX Bike</a>}
+                    {race.gpx.run && <a href={race.gpx.run} class="text-xs bg-white/10 hover:bg-brand-primary hover:text-black px-3 py-2 rounded transition-colors">GPX Run</a>}
+                </div>
+            </div>
+        )}
+      </div>
+
+      <!-- Schedule -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors">
+        <h3 class="text-gray-400 uppercase tracking-widest text-sm font-bold mb-6">Race Schedule</h3>
+        <div class="relative pl-4 border-l border-white/10 space-y-6">
+            {race.schedule.map((item) => (
+                <div class="relative">
+                    <span class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-brand-primary"></span>
+                    <span class="block text-xl font-bold text-white">{item.time}</span>
+                    <span class="text-sm text-gray-400">{item.event}</span>
+                </div>
+            ))}
+        </div>
+      </div>
+
+      <!-- Rules & Price -->
+      <div class="flex flex-col gap-8">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col justify-center items-center text-center flex-1">
+            <h3 class="text-gray-400 uppercase tracking-widest text-sm font-bold mb-2">Entry Fee</h3>
+            <div class="text-6xl font-black text-white mb-2">{race.price}</div>
+            <p class="text-sm text-gray-500 mb-6 font-mono">EARLY BIRD PRICE</p>
+            <a href="https://www.elsassman.com/inscriptions" class="btn-primary w-full">Register Now</a>
+          </div>
+          
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+              <h3 class="text-gray-400 uppercase tracking-widest text-sm font-bold mb-4">Brief Rules</h3>
+              <ul class="space-y-2 text-sm text-gray-300">
+                  {race.rules.map(rule => (
+                      <li class="flex gap-2">
+                          <span class="text-red-500">•</span> {rule}
+                      </li>
+                  ))}
+              </ul>
+          </div>
+      </div>
+    </section>
+
+    {race.map && (
+      <section class="container mx-auto px-4 mb-16">
+        <div class="flex items-end justify-between mb-8 text-end">
+             <h3 class="text-2xl font-bold uppercase">Course Map</h3>
+             <span class="text-xs text-gray-500">Interactive Map</span>
+        </div>
+        <Map />
+      </section>
+    )}
+  </main>
+  
+</Layout>

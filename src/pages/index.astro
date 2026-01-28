@@ -1,92 +1,122 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
+import ParallaxHero from '../components/ParallaxHero.astro';
+import Countdown from '../components/Countdown.astro';
 import RaceCard from '../components/RaceCard.astro';
-import SocialFeed from '../components/SocialFeed.astro';
-import Footer from '../components/Footer.astro';
-
-const races = [
-    {
-        title: "Distance M",
-        distance: "1.5km Swim / 40km Bike / 10km Run",
-        description: "The Legend. Tackle the mythic Grand Ballon and Markstein passes. A true test of endurance.",
-        link: "https://en.elsassman.com/distance-m",
-        delay: "0"
-    },
-    {
-        title: "Distance S - Discovery",
-        distance: "650m Swim / 23.9km Bike / 5.2km Run",
-        description: "Speed & Scenery. Swim in Ensisheim, ride through vineyards, and run to the finish line.",
-        link: "https://en.elsassman.com/s-decouverte",
-        delay: "100"
-    },
-    {
-        title: "Avenir 1 - Kids",
-        distance: "8-11 Years old",
-        description: "For the youngest champions (Poussins / Pupilles). 100m Swim / 2km Bike / 900m Run.",
-        link: "https://en.elsassman.com/avenir-1",
-        delay: "200"
-    },
-    {
-        title: "Avenir 2 - Youth",
-        distance: "12-19 Years old",
-        description: "The next generation (Benjamins to Juniors). 200m Swim / 4km Bike / 1.5km Run.",
-        link: "https://en.elsassman.com/avenir-2",
-        delay: "300"
-    }
-];
+import Map from '../components/Map.astro';
 ---
 
-<Layout title="Elsassman Triathlon | Swim Fast, Bike Strong, Run to Win">
+<Layout title="Elsassman Triathlon - Swim Fast, Bike Strong, Run to Win">
 	<Navbar />
 	
 	<main>
-		<Hero />
-		<About />
-		
-		<!-- Races Section -->
-		<section id="races" class="py-24 bg-gray-900 border-t border-gray-800">
-			<div class="container mx-auto px-4">
-				<div class="text-center mb-16 max-w-3xl mx-auto">
-                    <span class="text-red-500 font-bold uppercase tracking-widest text-sm mb-2 block">Choose Your Challenge</span>
-					<h2 class="text-4xl md:text-5xl font-bold text-white font-outfit mb-6">Our Races</h2>
-					<p class="text-gray-400 text-lg">
-                        Whether you are a seasoned pro or a first-timer, there is a race for you. Join us in July 2026.
-                    </p>
+		<ParallaxHero 
+			title="11 & 12 July 2026"
+			tagline="Challenge yourself on the mythical passes of Grand Ballon and Markstein. The ultimate triathlon experience in Alsace."
+			backgroundImage="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2670&auto=format&fit=crop"
+		/>
+
+		<section class="relative -mt-20 z-30 px-4">
+			<Countdown />
+		</section>
+
+		<section class="py-24 px-4 container mx-auto" id="races">
+			<div class="text-center mb-16">
+				<h2 class="text-xs font-bold tracking-[0.2em] text-brand-primary uppercase mb-3">Choose your challenge</h2>
+				<h3 class="text-4xl md:text-5xl font-black text-white uppercase">The Races</h3>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+				<RaceCard 
+					title="Format L"
+					distance="Long Distance"
+					swim="1.9km"
+					bike="80.3km"
+					run="20km"
+					link="/races/distance-l"
+					delay="100"
+				/>
+				<RaceCard 
+					title="Format M"
+					distance="Olympic Distance"
+					swim="1.5km"
+					bike="39.6km"
+					run="10km"
+					link="/races/distance-m"
+					delay="200"
+				/>
+				<RaceCard 
+					title="Format S"
+					distance="Sprint / Discovery"
+					swim="750m"
+					bike="23.9km"
+					run="5.2km"
+					link="/races/distance-s"
+					delay="300"
+				/>
+				<RaceCard 
+					title="Kids"
+					distance="Avenir 1 & 2"
+					swim="100/200m"
+					bike="VTT"
+					run="Run"
+					link="/races/kids"
+					delay="400"
+				/>
+			</div>
+		</section>
+
+		<section class="py-24 bg-brand-surface relative overflow-hidden">
+			<!-- Decorative blobst -->
+			<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+			<div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-secondary/5 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
+
+			<div class="container mx-auto px-4 relative z-10 flex flex-col lg:flex-row items-center gap-16">
+				<div class="lg:w-1/2 space-y-8">
+					<h2 class="text-4xl md:text-5xl font-black uppercase text-white leading-tight">
+						A Mythical <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">Course</span>
+					</h2>
+					<p class="text-gray-400 text-lg leading-relaxed">
+						From the calm waters of Ensisheim to the grueling climbs of the Vosges mountains. The Elsassman is not just a race; it's a journey through the heart of Alsace.
+					</p>
+					<div class="space-y-4">
+						<div class="flex items-start gap-4">
+							<div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-brand-primary shrink-0">
+								<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0121 18.382V7.618a1 1 0 00-.553-.894L16 7m-6-3l6 3"></path></svg>
+							</div>
+							<div>
+								<h4 class="text-xl font-bold text-white mb-1">Split Transition</h4>
+								<p class="text-gray-400">Swim in Ensisheim, Finish in Guebwiller. A point-to-point adventure.</p>
+							</div>
+						</div>
+						<div class="flex items-start gap-4">
+							<div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-brand-secondary shrink-0">
+								<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+							</div>
+							<div>
+								<h4 class="text-xl font-bold text-white mb-1">Legendary Climbs</h4>
+								<p class="text-gray-400">Tackle the Grand Ballon and Markstein passes on the L format.</p>
+							</div>
+						</div>
+					</div>
+					<a href="/info/schedule" class="btn-secondary inline-block">View Schedule</a>
 				</div>
-				
-				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-					{races.map(race => (
-						<RaceCard {...race} />
-					))}
+				<div class="lg:w-1/2 w-full">
+					<Map />
 				</div>
 			</div>
 		</section>
 
-        <!-- CTA / Contact Section -->
-        <section id="contact" class="py-24 relative overflow-hidden flex items-center justify-center bg-gray-950">
-            <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" alt="Triathlon Finish Line" class="w-full h-full object-cover opacity-20 filter grayscale" />
-                <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/80 to-transparent"></div>
-            </div>
-            
-            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-                <h2 class="text-4xl md:text-6xl font-bold text-white mb-8 font-outfit uppercase tracking-tighter">Are you ready <br/>to make <span class="text-red-600">history</span>?</h2>
-                <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                    <a href="https://en.elsassman.com/inscriptions" target="_blank" class="px-10 py-5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full uppercase tracking-wider text-lg transition-all transform hover:scale-105 shadow-xl shadow-red-900/40">
-                        Register Now
-                    </a>
-                    <a href="mailto:inscription@fast-guebwiller.com" class="px-10 py-5 bg-white text-gray-900 hover:bg-gray-100 font-bold rounded-full uppercase tracking-wider text-lg transition-all transform hover:scale-105">
-                        Contact Us
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <SocialFeed />
+		<section class="py-24 px-4 text-center">
+			<div class="max-w-3xl mx-auto space-y-8">
+				<h2 class="text-4xl md:text-6xl font-black uppercase">Ready to make history?</h2>
+				<p class="text-xl text-gray-400">Join hundreds of athletes for the 11th edition of the Elsassman Triathlon.</p>
+				<div class="flex justify-center gap-4">
+					<a href="/inscriptions" class="btn-primary">Register Now</a>
+				</div>
+			</div>
+		</section>
 	</main>
-	
-	<Footer />
+
 </Layout>

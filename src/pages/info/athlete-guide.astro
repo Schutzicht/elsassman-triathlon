@@ -1,0 +1,122 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Navbar from '../../components/Navbar.astro';
+---
+
+<Layout title="Athlete Guide - Elsassman Triathlon">
+    <Navbar />
+    
+    <main class="pt-32 pb-20 container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-black uppercase mb-4 text-white">Athlete <span class="text-brand-secondary">Guide</span></h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">Essential information to prepare for your race. Don't forget anything on race day!</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Swim -->
+            <div class="glass-panel p-8 rounded-xl hover:border-brand-primary/50 transition-colors group">
+                <div class="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 20a2.4 2.4 0 0 0 2 1.2c2.4 0 2.4-1.2 4.8-1.2 2.4 0 2.4 1.2 4.8 1.2 2.4 0 2.4-1.2 4.8-1.2 2.4 0 2.4 1.2 4.8 1.2a2.4 2.4 0 0 0 2-1.2"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold uppercase text-white mb-4">Swimming</h3>
+                <ul class="space-y-3 text-gray-300">
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        Swim Cap (NOT provided)
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        Goggles
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        Wetsuit (Check temp rules)
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        Tri-suit (worn under wetsuit)
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Bike -->
+            <div class="glass-panel p-8 rounded-xl hover:border-brand-primary/50 transition-colors group">
+                <div class="w-16 h-16 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 mb-6 group-hover:scale-110 transition-transform">
+                   <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
+                </div>
+                <h3 class="text-2xl font-bold uppercase text-white mb-4">Cycling</h3>
+                <ul class="space-y-3 text-gray-300">
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        Bike (Good condition)
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        Helmet (Mandatory, CE standard)
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        Cycling Shoes
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        Sunglasses
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        Water Bottles / Nutrition
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        Bib Number (Worn on back)
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Run -->
+            <div class="glass-panel p-8 rounded-xl hover:border-brand-primary/50 transition-colors group">
+                <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 mb-6 group-hover:scale-110 transition-transform">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                </div>
+                <h3 class="text-2xl font-bold uppercase text-white mb-4">Running</h3>
+                <ul class="space-y-3 text-gray-300">
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        Running Shoes
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        Cap / Visor
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        Bib Number (Worn on front)
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                        Socks (Recommended for L)
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-16 bg-brand-surface border border-white/10 rounded-2xl p-8 md:p-12">
+            <h2 class="text-3xl font-black uppercase text-white mb-6">Transition Bags (M & L Only)</h2>
+            <p class="text-lg text-gray-300 mb-6">
+                Since the swim start (Ensisheim) and finish line (Guebwiller) are at different locations, you will need to manage your gear carefully.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-black/30 p-6 rounded-lg">
+                    <h4 class="font-bold text-brand-primary mb-2">Swim-to-Bike (T1)</h4>
+                    <p class="text-sm text-gray-400">Leave your swim gear (wetsuit, goggles) in the specific bag provided. The organization will transport this bag to the finish line in Guebwiller.</p>
+                </div>
+                <div class="bg-black/30 p-6 rounded-lg">
+                    <h4 class="font-bold text-brand-secondary mb-2">Bike-to-Run (T2)</h4>
+                    <p class="text-sm text-gray-400">You must drop your Run Gear Bag at T2 (Guebwiller) either during bib pickup (Friday/Saturday) or follow specific race-day instructions.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+</Layout>

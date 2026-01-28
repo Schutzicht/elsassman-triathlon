@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import StickyCTA from '../components/StickyCTA.astro';
+import Footer from '../components/Footer.astro';
 import '@fontsource/outfit/400.css';
 import '@fontsource/outfit/700.css';
 import '@fontsource/inter/400.css';
@@ -25,7 +26,10 @@ const { title, description = "Elsassman Triathlon - Swim Fast, Bike Strong, Run 
 		<title>{title}</title>
 	</head>
 	<body class="bg-gray-950 text-white font-inter antialiased overflow-x-hidden">
-		<slot />
+        <div id="main-content" class="relative z-10 bg-gray-950 mb-[500px] shadow-2xl">
+		    <slot />
+        </div>
+        <Footer />
         <StickyCTA />
 	</body>
 </html>

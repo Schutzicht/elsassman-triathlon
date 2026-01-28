@@ -1,0 +1,54 @@
+---
+import 'leaflet/dist/leaflet.css';
+---
+
+<div id="map" class="w-full h-[500px] z-10 relative rounded-xl overflow-hidden border border-white/10 shadow-2xl"></div>
+
+<script>
+  import L from 'leaflet';
+
+  // Fix for default marker icon in Astro/Vite
+  delete (L.Icon.Default.prototype as any)._getIconUrl;
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+  });
+
+  const map = L.map('map').setView([47.9317, 7.3475], 11); // Centered between Ensisheim and Guebwiller
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(map);
+
+  // Markers
+  const ensisheim = L.marker([47.8654, 7.3524]).addTo(map).bindPopup('<b>Swim Start</b><br>Plan d\'eau Ensisheim');
+  const guebwiller = L.marker([47.9086, 7.2133]).addTo(map).bindPopup('<b>Finish & T2</b><br>Stade Throo, Guebwiller');
+  const grandBallon = L.marker([47.9012, 7.1022]).addTo(map).bindPopup('<b>Grand Ballon</b><br>Summit Challenge');
+  const markstein = L.marker([47.9255, 7.0305]).addTo(map).bindPopup('<b>Le Markstein</b><br>Mountain Pass');
+
+  // Draw simple line (approximate) - in real app use GPX
+  const latlngs = [
+    [47.8654, 7.3524], // Ensisheim
+    [47.9086, 7.2133], // Guebwiller
+    [47.9012, 7.1022], // Grand Ballon
+    [47.9255, 7.0305]  // Markstein
+  ];
+
+  // const polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
+  // map.fitBounds(polyline.getBounds());
+
+</script>
+
+<style>
+    :global(.leaflet-popup-content-wrapper) {
+        background-color: #1a1a1a;
+        color: white;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    :global(.leaflet-popup-tip) {
+        background-color: #1a1a1a;
+    }
+</style>
