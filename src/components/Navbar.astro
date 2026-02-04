@@ -102,59 +102,109 @@ const links = [
     </header>
 </div>
 
-<script>
-    const header = document.getElementById('main-header');
-    const container = document.getElementById('navbar-container');
-    const menuToggle = document.getElementById('menu-toggle');
-    const navbarSticky = document.getElementById('navbar-sticky');
-    const menuIconOpen = document.getElementById('menu-icon-open');
-    const menuIconClose = document.getElementById('menu-icon-close');
+<!-- Mobile Menu Overlay -->
+<div 
+    id="mobile-menu-overlay"
+    class="fixed inset-0 bg-brand-dark/98 backdrop-blur-2xl z-[100] transform translate-x-full transition-transform duration-500 ease-in-out md:hidden flex flex-col pt-32 px-10"
+>
+    <div class="absolute top-6 right-6">
+         <button 
+          id="close-menu"
+          type="button" 
+          class="text-white hover:text-brand-primary p-4 focus:outline-none cursor-pointer scale-125"
+        >
+          <X class="w-8 h-8" />
+        </button>
+    </div>
 
-    const updateNavbar = () => {
-        if (window.scrollY > 50) {
-            header?.classList.add('bg-brand-dark/80');
-            header?.classList.remove('bg-brand-dark/20');
-            container?.classList.remove('md:top-6');
-            container?.classList.add('top-0');
-        } else {
-            header?.classList.remove('bg-brand-dark/80');
-            header?.classList.add('bg-brand-dark/20');
-            if (window.innerWidth >= 768) {
-                container?.classList.add('md:top-6');
+    <!-- Mobile Nav Links -->
+    <nav class="flex flex-col space-y-8">
+        {links.map((link) => (
+            <div class="space-y-4">
+                {link.dropdown ? (
+                    <>
+                        <span class="text-brand-primary font-tech text-[10px] font-black uppercase tracking-[0.4em] block mb-2 opacity-50">
+                            {link.name}
+                        </span>
+                        <div class="flex flex-col space-y-4 pl-4 border-l border-brand-primary/20">
+                            {link.dropdown.map((subLink) => (
+                                <a
+                                    href={subLink.href}
+                                    class="text-3xl font-display font-black text-white italic hover:text-brand-primary transition-all duration-300"
+                                >
+                                    {subLink.name}
+                                </a>
+                            ))}
+                        </div>
+                    </>
+                ) : (
+                    <a
+                        href={link.href}
+                        class="text-5xl font-display font-black text-white italic hover:text-brand-primary transition-all duration-300"
+                    >
+                        {link.name}
+                    </a>
+                )}
+            </div>
+        ))}
+        
+        <div class="pt-12">
+            <a href="/inscriptions" class="btn-primary w-full py-4 text-center text-sm">
+                REGISTER NOW
+            </a>
+        </div>
+    </nav>
+</div>
+
+<script>
+    const setupNavbar = () => {
+        const header = document.getElementById('main-header');
+        const container = document.getElementById('navbar-container');
+        const menuBtn = document.getElementById('menu-toggle');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu-overlay');
+        const menuLinks = mobileMenu?.querySelectorAll('a');
+
+        // Scroll Logic
+        const updateNavbar = () => {
+            if (window.scrollY > 50) {
+                header?.classList.add('bg-brand-dark/80');
+                header?.classList.remove('bg-brand-dark/20');
+                container?.classList.remove('md:top-6');
+                container?.classList.add('top-0');
+            } else {
+                header?.classList.remove('bg-brand-dark/80');
+                header?.classList.add('bg-brand-dark/20');
+                if (window.innerWidth >= 768) {
+                    container?.classList.add('md:top-6');
+                }
+                container?.classList.remove('top-0');
             }
-            container?.classList.remove('top-0');
+        };
+
+        window.addEventListener('scroll', updateNavbar);
+        window.addEventListener('resize', updateNavbar);
+        updateNavbar();
+
+        // Mobile Menu Logic
+        function toggleMenu() {
+            mobileMenu?.classList.toggle('translate-x-full');
+            document.body.classList.toggle('overflow-hidden');
         }
+
+        menuBtn?.addEventListener('click', toggleMenu);
+        closeBtn?.addEventListener('click', toggleMenu);
+
+        menuLinks?.forEach(link => {
+            link.addEventListener('click', () => {
+                if (!mobileMenu?.classList.contains('translate-x-full')) {
+                    toggleMenu();
+                }
+            });
+        });
     };
 
-    window.addEventListener('scroll', updateNavbar);
-    window.addEventListener('resize', updateNavbar);
-    updateNavbar();
-
-    menuToggle?.addEventListener('click', () => {
-        const isHidden = navbarSticky?.classList.contains('hidden');
-        if (isHidden) {
-            navbarSticky?.classList.remove('hidden');
-            navbarSticky?.classList.add('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'w-full', 'bg-brand-dark/95', 'backdrop-blur-3xl', 'border-t', 'border-white/5', 'p-6');
-            menuIconOpen?.classList.add('hidden');
-            menuIconClose?.classList.remove('hidden');
-            document.body.classList.add('overflow-hidden');
-        } else {
-            navbarSticky?.classList.add('hidden');
-            navbarSticky?.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'w-full', 'bg-brand-dark/95', 'backdrop-blur-3xl', 'border-t', 'border-white/5', 'p-6');
-            menuIconOpen?.classList.remove('hidden');
-            menuIconClose?.classList.add('hidden');
-            document.body.classList.remove('overflow-hidden');
-        }
-    });
-
-    // Close menu on link click
-    navbarSticky?.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navbarSticky?.classList.add('hidden');
-            navbarSticky?.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'w-full', 'bg-brand-dark/95', 'backdrop-blur-3xl', 'border-t', 'border-white/5', 'p-6');
-            menuIconOpen?.classList.remove('hidden');
-            menuIconClose?.classList.add('hidden');
-            document.body.classList.remove('overflow-hidden');
-        });
-    });
+    // Run on initial load and after view transitions
+    setupNavbar();
+    document.addEventListener('astro:page-load', setupNavbar);
 </script>
