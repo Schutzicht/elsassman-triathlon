@@ -1,0 +1,237 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Map from '../../components/Map.astro';
+import { races } from '../../data/races';
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'distance-m' } },
+    { params: { slug: 'distance-s' } },
+    { params: { slug: 'distance-l' } },
+    { params: { slug: 'avenir-1' } },
+    { params: { slug: 'avenir-2' } },
+  ];
+}
+
+const { slug } = Astro.params;
+const raceBase = races[slug as keyof typeof races];
+
+if (!raceBase) {
+  return Astro.redirect('/404');
+}
+
+// French translations for race content
+const racesFr = {
+    'distance-l': {
+        title: "Distance L",
+        subtitle: "La Légende",
+        description: "1.9km Natation | 80km Vélo | 20km Course. Conquérez le Grand Ballon et le Markstein.",
+        longDescription: "Relevez le défi sur la légendaire 'Distance L'. En commençant par une nage dans le plan d'eau d'Ensisheim, vous affronterez un parcours vélo qui vous mènera à travers la plaine d'Alsace avant de gravir les cols mythiques du Grand Ballon et du Markstein. La course à pied vous emmènera à travers les vignobles jusqu'à la ligne d'arrivée à Guebwiller.",
+        rules: [
+            "Règles de combinaison FFTri",
+            "Drafting Interdit (règle des 12m)",
+            "Temps limite Natation : 1h10",
+            "Temps limite Vélo : 12h15",
+            "Temps limite Course : 14h15"
+        ],
+        typeLabel: "Compétition Adulte"
+    },
+    'distance-m': {
+        title: "Distance M",
+        subtitle: "La Classique",
+        description: "1.5km Natation | 40km Vélo | 10km Course. Un vrai test d'endurance sur un parcours magnifique.",
+        longDescription: "La distance olympique classique. Nagez à Ensisheim, roulez sur un parcours exigeant vers Guebwiller, et terminez par une course de type trail à travers les vignobles.",
+        rules: [
+            "Règles de combinaison FFTri",
+            "Drafting Interdit (règle des 7m)",
+            "Temps limite Natation : 50min",
+            "75% trail - choisissez bien vos chaussures"
+        ],
+        typeLabel: "Compétition Adulte"
+    },
+    'distance-s': {
+        title: "Distance S",
+        subtitle: "La Découverte",
+        description: "750m Natation | 24km Vélo | 5km Course. Parfait pour les sprinteurs comme pour les débutants.",
+        longDescription: "Un format sprint parfait pour découvrir le triathlon ou repousser vos limites de vitesse. Épreuve du championnat départemental.",
+        rules: [
+            "Règles de combinaison FFTri",
+            "Drafting Interdit",
+            "Casque audio strictement interdit"
+        ],
+        typeLabel: "Compétition Adulte"
+    },
+    'avenir-1': {
+        title: "Avenir 1",
+        subtitle: "Futurs Champions (6-9 ans)",
+        description: "100m Natation | 2km Vélo | 1km Course. Pour Mini-Poussins et Poussins.",
+        longDescription: "Une course sûre et amusante pour les plus jeunes triathlètes. Nécessite de savoir nager 250m.",
+        rules: [
+            "VTT obligatoire",
+            "Casque obligatoire",
+            "Savoir nager 250m"
+        ],
+        typeLabel: "Catégorie Jeunesse"
+    },
+    'avenir-2': {
+        title: "Avenir 2",
+        subtitle: "Étoiles Montantes (10-13 ans)",
+        description: "200m Natation | 4.2km Vélo | 1.6km Course. Pour Pupilles et Benjamins.",
+        longDescription: "Pour les plus grands prêts pour un défi légèrement plus important.",
+        rules: [
+            "VTT obligatoire",
+            "Casque obligatoire"
+        ],
+        typeLabel: "Catégorie Jeunesse"
+    }
+};
+
+const raceFr = racesFr[slug as keyof typeof racesFr];
+const race = { ...raceBase, ...raceFr };
+
+// Localized events for timeline
+const eventTranslations: Record<string, string> = {
+    "Bike Park Open (Ensisheim)": "Ouverture du Parc à vélos (Ensisheim)",
+    "Bike Park Close": "Fermeture du Parc à vélos",
+    "Briefing (Ensisheim)": "Briefing (Ensisheim)",
+    "START": "DÉPART",
+    "Swim Cut-off / Bike Start Limit": "Limite Natation / Départ Vélo",
+    "Run Start Cut-off": "Limite Départ Course",
+    "Bike Pickup (Guebwiller)": "Retrait des Vélos (Guebwiller)",
+    "Awards": "Remise des Prix",
+    "Bike Park Open": "Ouverture du Parc à vélos",
+    "Briefing": "Briefing",
+    "START (Rolling)": "DÉPART (Rolling)",
+    "Run Start Limit": "Limite Départ Course",
+    "Bike Start Limit": "Limite Départ Vélo",
+    "Bike Pickup": "Retrait des Vélos"
+};
+---
+
+<Layout title={`${race.title} - ELSASSMAN`} lang="fr">
+  <Navbar />
+  
+  <main class="pt-32 pb-24">
+    <!-- Hero Header -->
+    <section class="relative py-32 px-6 lg:px-12 overflow-hidden mb-24 bg-brand-accent">
+      <div class="max-w-7xl mx-auto relative z-10">
+      <img 
+        src={`/assets/photography/race-${slug.replace('distance-', '')}.jpg`} 
+        alt={race.title} 
+        class="absolute inset-0 w-full h-full object-cover opacity-20"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-60"></div>
+      <div class="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
+          <div class="absolute top-0 right-0 font-tech text-[20vw] font-black italic opacity-10">COURSE</div>
+      </div>
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="inline-flex items-center gap-4 mb-8">
+            <div class="w-8 h-[2px] bg-brand-primary"></div>
+            <span class="font-tech text-xs font-black uppercase tracking-[0.4em] text-brand-primary">
+                {raceFr.typeLabel}
+            </span>
+        </div>
+        <h1 class="text-5xl md:text-8xl lg:text-[12rem] font-black uppercase italic leading-[0.8] mb-12 text-white tracking-tighter">
+          {race.title}
+        </h1>
+        <p class={`text-2xl md:text-4xl lg:text-5xl font-display font-black uppercase italic tracking-tight text-white/50 mb-12`}>
+          {race.subtitle}
+        </p>
+        <div class="w-full h-[1px] bg-white/5 mb-12"></div>
+        <p class="text-xl md:text-2xl text-white font-body uppercase tracking-wider font-bold max-w-3xl leading-relaxed mb-12">
+          {race.longDescription || race.description}
+        </p>
+        
+        <div class="flex flex-wrap gap-8">
+            <a href="/fr/inscriptions" class="btn-primary px-12">S'INSCRIRE</a>
+            {race.gpx?.swim && <a href={race.gpx.swim} target="_blank" class="btn-secondary">TÉLÉCHARGER GPX</a>}
+        </div>
+      </div>
+    </section>
+
+    <!-- Details Grid -->
+    <section class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-24">
+      <!-- Distances Instruments -->
+      <div class="lg:col-span-4 bg-brand-surface border border-white/5 p-8 lg:p-12 relative group">
+        <div class="absolute top-0 left-0 w-2 h-full bg-brand-primary"></div>
+        <h3 class="font-tech text-xs text-white/20 uppercase tracking-[0.4em] mb-12 italic">Métriques de Performance</h3>
+        <ul class="space-y-12">
+            <li class="flex items-center gap-8">
+                <div class="w-14 h-14 bg-white/5 flex items-center justify-center text-2xl font-black italic border border-white/5 group-hover:bg-brand-primary group-hover:text-black transition-all">S</div>
+                <div>
+                    <span class="block text-4xl font-display font-black text-white leading-none mb-1">{race.swim}</span>
+                    <span class="font-tech text-[10px] text-white/30 uppercase tracking-[0.3em]">Natation / Eau Libre</span>
+                </div>
+            </li>
+            <li class="flex items-center gap-8">
+                <div class="w-14 h-14 bg-white/5 flex items-center justify-center text-2xl font-black italic border border-white/5 group-hover:bg-brand-secondary group-hover:text-black transition-all">B</div>
+                <div>
+                    <span class="block text-4xl font-display font-black text-white leading-none mb-1">{race.bike}</span>
+                    <span class="font-tech text-[10px] text-white/30 uppercase tracking-[0.3em]">Vélo / Dénivelé</span>
+                </div>
+            </li>
+            <li class="flex items-center gap-8">
+                <div class="w-14 h-14 bg-white/5 flex items-center justify-center text-2xl font-black italic border border-white/5 group-hover:bg-white group-hover:text-black transition-all">R</div>
+                <div>
+                    <span class="block text-4xl font-display font-black text-white leading-none mb-1">{race.run}</span>
+                    <span class="font-tech text-[10px] text-white/30 uppercase tracking-[0.3em]">Course / Technique</span>
+                </div>
+            </li>
+        </ul>
+      </div>
+
+      <!-- Schedule -->
+      <div class="lg:col-span-5 bg-black border border-white/5 p-8 lg:p-12 relative">
+        <h3 class="font-tech text-xs text-white/20 uppercase tracking-[0.4em] mb-12 italic">Chronologie</h3>
+        <div class="space-y-10">
+            {race.schedule.map((item) => (
+                <div class="flex gap-8 group">
+                    <span class="font-tech text-2xl font-black text-brand-primary tabular-nums group-hover:text-white transition-colors">{item.time}</span>
+                    <div class="pt-1">
+                        <span class="block text-lg font-display font-black text-white uppercase italic group-hover:text-brand-primary transition-colors">
+                            {eventTranslations[item.event] || item.event}
+                        </span>
+                        <div class="w-8 h-[1px] bg-white/5 mt-2 group-hover:w-full transition-all"></div>
+                    </div>
+                </div>
+            ))}
+        </div>
+      </div>
+
+      <!-- Fees & Rules -->
+      <div class="lg:col-span-3 flex flex-col gap-6">
+          <div class="bg-brand-primary p-12 flex flex-col justify-center items-center text-center flex-1" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);">
+            <span class="font-tech text-[10px] font-black text-black/50 uppercase tracking-[0.3em] mb-4">Frais d'Inscription</span>
+            <div class="text-7xl font-display font-black text-black leading-none mb-2">{race.price}</div>
+            <p class="font-tech text-[9px] text-black/60 uppercase tracking-widest font-black">Places Limitées</p>
+          </div>
+          
+          <div class="bg-brand-accent p-8 border border-white/5">
+              <h3 class="font-tech text-[10px] text-white/20 uppercase tracking-[0.4em] mb-6 font-black italic">Directives Clés</h3>
+              <ul class="space-y-4">
+                  {race.rules.map(rule => (
+                      <li class="flex gap-4">
+                          <span class="text-brand-primary font-black">•</span> 
+                          <span class="font-body text-[10px] uppercase font-bold tracking-widest text-white/60">{rule}</span>
+                      </li>
+                  ))}
+              </ul>
+          </div>
+      </div>
+    </section>
+
+    {race.map && (
+      <section class="container mx-auto px-6 mb-24">
+        <div class="flex items-center gap-4 mb-12">
+             <div class="w-12 h-1 bg-brand-secondary"></div>
+             <h3 class="text-4xl font-display font-black italic uppercase">Carte du Parcours</h3>
+        </div>
+        <div class="border border-white/5">
+            <Map />
+        </div>
+      </section>
+    )}
+  </main>
+  
+</Layout>

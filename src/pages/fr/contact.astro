@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+---
+
+<Layout title="CENTRE DE COMMANDEMENT - ELSASSMAN" lang="fr">
+    <Navbar />
+    
+    <main class="pt-48 pb-32 max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="flex flex-col lg:flex-row gap-24">
+            <div class="lg:w-1/2">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-1 bg-brand-primary"></div>
+                    <span class="font-tech text-xs font-black uppercase tracking-[0.4em] text-white/40">Centre de Communication</span>
+                </div>
+                <h1 class="text-7xl md:text-9xl font-black uppercase italic leading-[0.8] mb-12 text-white tracking-tighter">
+                    CENTRE DE <br/> <span class="text-brand-primary">COMMANDEMENT</span>
+                </h1>
+                <p class="text-xl text-white/50 mb-12 leading-relaxed font-body uppercase tracking-wider font-bold max-w-xl">
+                    Accès direct pour les athlètes, les partenaires et la presse. Notre équipe technique est en attente pour vous assister.
+                </p>
+
+                <div class="space-y-12">
+                    <div class="group">
+                        <h3 class="font-tech text-[10px] font-black uppercase text-white/20 tracking-[0.4em] mb-4 italic">Transmission Chiffrée</h3>
+                        <a href="mailto:inscription@fast-guebwiller.com" class="text-3xl font-display font-black text-white hover:text-brand-primary transition-all uppercase italic">
+                            inscription@fast-guebwiller.com
+                        </a>
+                    </div>
+                    <div>
+                        <h3 class="font-tech text-[10px] font-black uppercase text-white/20 tracking-[0.4em] mb-4 italic">Lieux de l'Événement</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div class="bg-brand-surface border-l border-white/5 p-6 group">
+                                <p class="font-tech text-[10px] text-brand-primary font-black uppercase tracking-widest mb-2">Base Alpha (Départ)</p>
+                                <p class="text-white/60 font-body text-xs font-bold uppercase tracking-widest leading-loose">Plan d'eau Ensisheim<br/>68190 Ensisheim, Alsace</p>
+                            </div>
+                            <div class="bg-brand-surface border-l border-white/5 p-6 group">
+                                <p class="font-tech text-[10px] text-brand-secondary font-black uppercase tracking-widest mb-2">Base Omega (Arrivée)</p>
+                                <p class="text-white/60 font-body text-xs font-bold uppercase tracking-widest leading-loose">Stade Throo, Route d'Issenheim<br/>68500 Guebwiller, Alsace</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2">
+                <form class="bg-brand-surface/30 border border-white/5 p-12 md:p-16 relative group">
+                    <div class="absolute top-0 right-0 w-24 h-24 pointer-events-none opacity-5">
+                         <svg class="w-full h-full text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-width="1"/></svg>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 gap-10 mb-10">
+                        <div class="space-y-4">
+                            <label class="font-tech text-[10px] font-black uppercase text-white/20 tracking-[0.4em]">Nom Complet</label>
+                            <input type="text" class="w-full bg-black/60 border border-white/10 px-8 py-5 text-white font-display font-bold uppercase tracking-widest focus:border-brand-primary focus:outline-none transition-all placeholder:text-white/5" placeholder="IDENTIFIANT">
+                        </div>
+                        <div class="space-y-4">
+                            <label class="font-tech text-[10px] font-black uppercase text-white/20 tracking-[0.4em]">Alias E-mail</label>
+                            <input type="email" class="w-full bg-black/60 border border-white/10 px-8 py-5 text-white font-display font-bold uppercase tracking-widest focus:border-brand-primary focus:outline-none transition-all placeholder:text-white/5" placeholder="CONTACT@DOMAIN.COM">
+                        </div>
+                        <div class="space-y-4">
+                            <label class="font-tech text-[10px] font-black uppercase text-white/20 tracking-[0.4em]">Type de Transmission</label>
+                            <select class="w-full bg-black/60 border border-white/10 px-8 py-5 text-white font-display font-bold uppercase tracking-widest focus:border-brand-primary focus:outline-none transition-all appearance-none">
+                                <option>Demande Générale</option>
+                                <option>Technique / Règlement</option>
+                                <option>Logistique / Médias</option>
+                                <option>Sponsoring</option>
+                            </select>
+                        </div>
+                        <div class="space-y-4">
+                            <label class="font-tech text-[10px] font-black uppercase text-white/20 tracking-[0.4em]">Contenu du Message</label>
+                            <textarea rows="6" class="w-full bg-black/60 border border-white/10 px-8 py-5 text-white font-display font-bold uppercase tracking-widest focus:border-brand-primary focus:outline-none transition-all placeholder:text-white/5" placeholder="ÉCRIVEZ VOTRE TRANSMISSION..."></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary w-full py-6 text-xl">EXÉCUTER LA TRANSMISSION</button>
+                    <p class="font-tech text-[8px] text-white/20 uppercase tracking-[0.4em] text-center mt-8">Réponse attendue sous 24.00 - 48.00 HEURES.</p>
+                </form>
+            </div>
+        </div>
+    </main>
+</Layout>

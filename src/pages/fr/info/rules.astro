@@ -1,0 +1,94 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+
+const ruleSections = [
+    {
+        title: "Natation",
+        rules: [
+            "Combinaison : Obligatoire < 16°C, Interdite > 24.5°C.",
+            "Dossard : Interdit dans l'eau.",
+            "Bonnet : Vous devez porter le bonnet officiel fourni (le cas échéant).",
+            "Nudité : Strictement interdite dans l'aire de transition."
+        ]
+    },
+    {
+        title: "Cyclisme",
+        rules: [
+            "Drafting : Interdit (zone de 7m pour S/M, 12m pour L) - Pénalité Carton Bleu.",
+            "Casque : Obligatoire et doit être attaché avant de toucher le vélo.",
+            "Dossard : Porté dans le dos.",
+            "Musique : Écouteurs/Casques strictement interdits (Disqualification).",
+            "Limites de temps : Voir la page programme pour les barrières horaires strictes."
+        ]
+    },
+    {
+        title: "Course à Pied",
+        rules: [
+            "Dossard : Porté devant.",
+            "Casque : Interdit.",
+            "Assistance : Aucune assistance extérieure autorisée."
+        ]
+    },
+    {
+        title: "Logistique (Spécifique M & L)",
+        rules: [
+            "Transition Séparée : Départ natation à Ensisheim, Arrivée à Guebwiller (~14km d'écart).",
+            "Sacs : Les affaires de course à pied doivent être déposées à T2 (Guebwiller) ou lors du retrait des dossards selon les instructions.",
+            "Navette : AUCUNE navette n'est prévue par l'organisation pour les athlètes."
+        ]
+    }
+];
+---
+
+<Layout title="Règlement - Elsassman Triathlon" lang="fr">
+    <Navbar />
+    
+    <main class="pt-32 pb-20 container mx-auto px-4 max-w-4xl">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-black uppercase mb-4 text-white">Règlement</h1>
+            <p class="text-xl text-gray-400">Règles clés pour une course sûre et équitable.</p>
+        </div>
+
+        <div class="space-y-4">
+            {ruleSections.map((section, index) => (
+                <div class="bg-white/5 border border-white/10 rounded-xl overflow-hidden group">
+                    <details class="w-full">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-white/5 transition-colors list-none">
+                            <h2 class="text-xl font-bold uppercase text-brand-primary">{section.title}</h2>
+                            <span class="transform transition-transform group-open:rotate-180">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="p-6 pt-0 text-gray-300 border-t border-white/5">
+                            <ul class="space-y-3 mt-4">
+                                {section.rules.map(rule => (
+                                    <li class="flex items-start gap-3">
+                                        <svg class="w-5 h-5 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                        <span>{rule}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            ))}
+        </div>
+
+        <div class="mt-12 p-8 bg-red-600/10 border border-red-600/30 rounded-xl text-center">
+            <h3 class="text-xl font-bold text-red-500 mb-2 uppercase">Réglementation Officielle FFTri</h3>
+            <p class="text-gray-300 mb-6">L'Elsassman suit les règles strictes de la Fédération Française de Triathlon.</p>
+            <a href="http://www.fftri.com/reglementation-sportive" target="_blank" class="btn-secondary text-sm">Télécharger le règlement FFTri complet</a>
+        </div>
+    </main>
+    
+</Layout>
+
+<style>
+    details > summary {
+        list-style: none;
+    }
+    details > summary::-webkit-details-marker {
+        display: none;
+    }
+</style>

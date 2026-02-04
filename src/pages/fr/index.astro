@@ -1,0 +1,159 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ParallaxHero from '../components/ParallaxHero.astro';
+import Countdown from '../components/Countdown.astro';
+import RaceCard from '../components/RaceCard.astro';
+import Map from '../components/Map.astro';
+import SocialFeed from '../components/SocialFeed.astro';
+---
+
+<Layout title="ELSASSMAN - REPOUSSEZ L'IMPOSSIBLE">
+	<Navbar />
+	
+	<main>
+		<ParallaxHero 
+			title="11 & 12 JUILLET / 2026"
+			tagline="DÉFIEZ-VOUS SUR LES COLS MYTHIQUES D'ALSACE. LE TEST ULTIME."
+			videoUrl="/assets/videos/hero-drone.mp4"
+		/>
+
+		<section class="relative z-30 px-6 lg:px-12 max-w-7xl mx-auto py-12 lg:py-24">
+			<Countdown />
+		</section>
+
+		<section class="py-20 lg:py-32 px-6 lg:px-12 max-w-7xl mx-auto" id="races">
+			<div 
+				class="mb-20 animate-fade-in"
+			>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-1 bg-brand-primary"></div>
+                    <span class="font-tech text-xs font-black uppercase tracking-[0.4em] text-white/40">Sélectionnez le Format</span>
+                </div>
+				<h3 class="text-6xl md:text-8xl lg:text-9xl font-black text-white italic leading-none">LES COURSES</h3>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+				<RaceCard 
+					title="FORMAT L"
+					distance="LONGUE DISTANCE"
+					swim="1.9KM"
+					bike="80.3KM"
+					run="20KM"
+					link="/fr/races/distance-l"
+					image="/assets/photography/race-l.jpg"
+					delay="100"
+				/>
+				<RaceCard 
+					title="FORMAT M"
+					distance="DISTANCE OLYMPIQUE"
+					swim="1.5KM"
+					bike="39.6KM"
+					run="10KM"
+					link="/fr/races/distance-m"
+					image="/assets/photography/race-m.jpg"
+					delay="200"
+				/>
+				<RaceCard 
+					title="FORMAT S"
+					distance="SPRINT / DÉCOUVERTE"
+					swim="750M"
+					bike="23.9KM"
+					run="5.2KM"
+					link="/fr/races/distance-s"
+					image="/assets/photography/race-s.jpg"
+					delay="300"
+				/>
+				<RaceCard 
+					title="KIDS"
+					distance="AVENIR 1 & 2"
+					swim="100/200M"
+					bike="VTT"
+					run="COURSE NATURE"
+					link="/fr/races/kids"
+					image="/assets/photography/race-kids.jpg"
+					delay="400"
+				/>
+			</div>
+		</section>
+
+		<section class="py-24 lg:py-40 bg-brand-surface relative overflow-hidden border-y border-white/5">
+			<!-- HUD Background Decor -->
+			<div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none hidden lg:block">
+                <div class="absolute top-0 right-0 p-20 font-tech text-[10vw] font-black leading-none uppercase italic">MYTHIQUE</div>
+                <div class="absolute bottom-0 left-0 p-20 font-tech text-[10vw] font-black leading-none uppercase italic">VOYAGE</div>
+            </div>
+
+			<div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-24">
+				<div 
+					class="lg:w-1/2 space-y-12 animate-fade-in"
+				>
+                    <div class="space-y-4">
+                        <div class="w-20 h-1 bg-brand-secondary"></div>
+					    <h2 class="text-5xl md:text-7xl lg:text-8xl font-black uppercase text-white leading-[0.9] italic">
+						    UN VOYAGE <br/> <span class="text-brand-primary">DE PERSÉVÉRANCE</span>
+					    </h2>
+                    </div>
+					<p class="text-white/40 text-xl leading-relaxed font-body uppercase tracking-wider font-bold">
+						Des eaux calmes d'Ensisheim aux ascensions épuisantes des Vosges. L'Elsassman n'est pas seulement une course, c'est un voyage au cœur de l'Alsace.
+					</p>
+					<div class="space-y-8 pt-4">
+						<div class="flex items-start gap-8 group">
+							<div class="w-16 h-16 bg-white/5 border border-white/5 flex items-center justify-center text-brand-primary shrink-0 group-hover:bg-brand-primary group-hover:text-black transition-all">
+								<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0121 18.382V7.618a1 1 0 00-.553-.894L16 7m-6-3l6 3"></path></svg>
+							</div>
+							<div>
+								<h4 class="text-xl font-black text-white mb-2">TRANSITION SÉPARÉE</h4>
+								<p class="text-white/40 font-body text-sm uppercase tracking-widest">Départ Ensisheim. Arrivée Guebwiller. De l'adrénaline de bout en bout.</p>
+							</div>
+						</div>
+						<div class="flex items-start gap-8 group">
+							<div class="w-16 h-16 bg-white/5 border border-white/5 flex items-center justify-center text-brand-secondary shrink-0 group-hover:bg-brand-secondary group-hover:text-black transition-all">
+								<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+							</div>
+							<div>
+								<h4 class="text-xl font-black text-white mb-2">SOMMETS LÉGENDAIRES</h4>
+								<p class="text-white/40 font-body text-sm uppercase tracking-widest">Affrontez les cols du Grand Ballon et du Markstein. Le test d'élévation ultime.</p>
+							</div>
+						</div>
+					</div>
+					<a href="/fr/info/schedule" class="btn-secondary inline-block py-4 px-12">PROGRAMME COMPLET</a>
+				</div>
+				<div 
+					class="lg:w-1/2 w-full animate-fade-in space-y-8"
+				>
+                    <div class="space-y-4">
+                        <img src="/assets/photography/team.jpg" alt="Team" class="w-full aspect-video object-cover border border-white/5" />
+                        <div class="bg-brand-primary h-12 flex items-center px-4 font-tech text-[10px] font-black uppercase tracking-widest text-black">Base Alpha Crew</div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white/5 aspect-video md:aspect-square relative overflow-hidden group border border-white/5">
+                           <img src="/assets/photography/finish-emotion.jpg" alt="Emotion" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" />
+                           <div class="absolute top-4 left-4 font-tech text-[8px] font-black text-brand-primary uppercase tracking-[0.3em] bg-black/80 px-2 py-1">Mission Integrity</div>
+                        </div>
+					    <div class="hidden lg:block">
+                            <Map />
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</section>
+
+		<SocialFeed />
+
+		<section class="py-24 lg:py-48 px-6 lg:px-12 text-center relative overflow-hidden hidden lg:block">
+            <div class="absolute inset-0 bg-brand-primary/5 -skew-y-3 translate-y-24"></div>
+			<div class="max-w-7xl mx-auto space-y-12 relative z-10 px-6 lg:px-12">
+                <div class="flex justify-center mb-8">
+                    <div class="w-1 h-20 bg-brand-primary animate-pulse"></div>
+                </div>
+				<h2 class="text-5xl md:text-8xl lg:text-[10rem] font-black uppercase italic leading-[0.8] tracking-tighter">OSEZ ÊTRE <br/> <span class="text-brand-primary">PREMIER</span></h2>
+				<p class="text-2xl text-white/40 uppercase tracking-widest font-bold">Rejoignez plus de 1 000 athlètes pour la 11ème édition.</p>
+				<div class="flex justify-center pt-8">
+					<a href="/fr/inscriptions" class="btn-primary text-2xl px-16 py-6 ring-8 ring-brand-primary/10">S'INSCRIRE MAINTENANT</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+</Layout>

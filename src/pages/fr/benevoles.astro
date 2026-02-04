@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import { motion } from 'framer-motion';
+---
+
+<Layout title="REJOIGNEZ L'ÉQUIPE - ELSASSMAN" lang="fr">
+    <Navbar />
+    
+    <main class="pt-48 pb-32 max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="flex flex-col lg:flex-row gap-24 items-start">
+            <div class="lg:w-1/2">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-1 bg-brand-primary"></div>
+                    <span class="font-tech text-xs font-black uppercase tracking-[0.4em] text-white/40">Programme Bénévoles</span>
+                </div>
+                <h1 class="text-7xl md:text-9xl font-black uppercase italic leading-[0.8] mb-12 text-white tracking-tighter">
+                   REJOIGNEZ <br/> <span class="text-brand-primary">L'ÉQUIPE</span>
+                </h1>
+                <p class="text-xl text-white/50 mb-12 leading-relaxed font-body uppercase tracking-wider font-bold max-w-xl">
+                    Sans vous, rien n'est possible. Nous recherchons 350 personnes engagées pour construire le mythe. 
+                    Vivez l'adrénaline de l'intérieur.
+                </p>
+
+                <div class="bg-brand-surface border border-white/5 p-12 relative overflow-hidden group mb-12">
+                    <img src="/assets/photography/volunteer-2.jpg" class="absolute inset-0 w-full h-full object-cover opacity-5 group-hover:opacity-10 transition-opacity" />
+                    <div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+                        <svg class="w-32 h-32 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-width="1"/></svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-black text-white mb-8 italic uppercase">Les Récompenses</h3>
+                    <ul class="space-y-6">
+                        {[
+                            "Équipement Officiel Elsassman Crew",
+                            "Restauration complète pendant les missions",
+                            "Accès à la Fête Exclusive des Bénévoles",
+                            "Du carburant pour les athlètes, de la fierté pour l'équipe"
+                        ].map(item => (
+                            <li class="flex items-center gap-6">
+                                <div class="w-2 h-2 bg-brand-primary rotate-45"></div>
+                                <span class="text-white/60 font-tech text-xs font-black uppercase tracking-widest">{item}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <a href="https://vorg.fr/fastguebwiller/elsassman" target="_blank" class="btn-primary inline-block text-center w-full md:w-auto">
+                    DEVENIR BÉNÉVOLE
+                </a>
+            </div>
+
+            <div class="lg:w-1/2 grid grid-cols-1 gap-4 w-full relative">
+                <img src="/assets/photography/volunteer-1.jpg" class="absolute -top-24 -right-24 w-96 h-96 object-cover opacity-10 rounded-full blur-3xl" />
+                <!-- Roles -->
+                {[
+                    { title: "Soutien Natation", desc: "Sécurité sur l'eau, gestion des entrées et sorties." },
+                    { title: "Signaleur", desc: "Guidage technique sur les parcours vélo et course à pied." },
+                    { title: "Ravitaillement", desc: "Gestion des postes de ravitaillement et encouragement des athlètes." },
+                    { title: "Pôle Logistique", desc: "Distribution des dossards, gestion du parc à vélos." }
+                ].map(role => (
+                    <div class="group relative">
+                        <div class="bg-brand-surface/40 border border-white/5 p-8 transition-all duration-500 group-hover:bg-brand-surface/80 group-hover:border-brand-primary/30 cursor-pointer">
+                            <h3 class="text-2xl font-display font-black text-white uppercase italic mb-2 group-hover:text-brand-primary transition-colors">{role.title}</h3>
+                            <p class="text-white/30 font-tech text-[10px] uppercase tracking-widest leading-loose">{role.desc}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </main>
+</Layout>

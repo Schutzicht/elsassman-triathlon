@@ -10,13 +10,14 @@ import '@fontsource/hanken-grotesk/700.css';
 interface Props {
 	title: string;
     description?: string;
+    lang?: string;
 }
 
-const { title, description = "Elsassman Triathlon - Swim Fast, Bike Strong, Run to Win. The ultimate triathlon challenge in Alsace." } = Astro.props;
+const { title, description = "Elsassman Triathlon - Swim Fast, Bike Strong, Run to Win. The ultimate triathlon challenge in Alsace.", lang = Astro.currentLocale || "en" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
