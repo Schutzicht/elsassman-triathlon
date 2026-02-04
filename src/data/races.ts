@@ -59,7 +59,8 @@ export const races = {
             "Drafting Forbidden (7m rule)",
             "Cut-off Swim: 50min",
             "Run is 75% trail - choose shoes wisely"
-        ]
+        ],
+        gpx: {}
     },
     'distance-s': {
         title: "Distance S",

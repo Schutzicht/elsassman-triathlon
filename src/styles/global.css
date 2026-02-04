@@ -1,49 +1,65 @@
 @import "tailwindcss";
 
 @theme {
-    --color-brand-primary: #00f2ea;
-    --color-brand-secondary: #ff0055;
-    --color-brand-dark: #0a0a0a;
-    --color-brand-surface: #1a1a1a;
+    --color-brand-primary: #ff0000;
+    /* Toxic Lime */
+    --color-brand-secondary: #6366f1;
+    /* Electric Indigo */
+    --color-brand-dark: #000000;
+    --color-brand-surface: #111111;
+    --color-brand-accent: #222222;
 
     --font-display: "Outfit", sans-serif;
-    --font-body: "Inter", sans-serif;
+    --font-tech: "Space Grotesk", sans-serif;
+    --font-body: "Hanken Grotesk", sans-serif;
+
+    --animate-grain: grain 8s steps(10) infinite;
 }
 
 @layer base {
     body {
-        @apply bg-brand-dark text-white selection:bg-brand-primary selection:text-black;
+        @apply bg-brand-dark text-white selection:bg-brand-primary selection:text-black font-body;
     }
 
     h1,
     h2,
-    h3,
+    h3 {
+        @apply font-display font-extrabold uppercase tracking-tight;
+    }
+
     h4,
     h5,
     h6 {
-        @apply font-display font-bold;
+        @apply font-tech font-bold uppercase tracking-widest;
     }
 }
 
 @layer components {
-    .text-gradient {
-        @apply bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400;
-    }
-
-    .text-gradient-brand {
-        @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-secondary;
-    }
-
     .btn-primary {
-        @apply px-6 py-3 bg-brand-primary text-black font-bold uppercase tracking-wider hover:bg-white transition-all duration-300 transform hover:-translate-y-1;
-        box-shadow: 0 0 20px rgba(0, 242, 234, 0.3);
+        @apply relative px-8 py-4 bg-brand-primary text-black font-tech font-black uppercase tracking-tighter transition-all duration-300 overflow-hidden;
+        clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%);
+    }
+
+    .btn-primary:hover {
+        @apply bg-white scale-105;
+        box-shadow: 0 0 30px rgba(204, 255, 0, 0.4);
     }
 
     .btn-secondary {
-        @apply px-6 py-3 border border-white/20 hover:border-white text-white font-bold uppercase tracking-wider transition-all duration-300 hover:bg-white/5;
+        @apply relative px-8 py-4 border border-white/10 text-white font-tech font-bold uppercase tracking-widest transition-all duration-300;
+        clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0 30%);
     }
 
-    .glass-panel {
-        @apply bg-white/5 backdrop-blur-lg border border-white/10;
+    .btn-secondary:hover {
+        @apply border-brand-primary bg-brand-primary/5;
+    }
+
+    .glass-card {
+        @apply bg-brand-surface/50 backdrop-blur-xl border border-white/5 relative overflow-hidden;
+    }
+
+    .noise-overlay {
+        @apply pointer-events-none fixed inset-0 z-[9999] opacity-[0.03];
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 }

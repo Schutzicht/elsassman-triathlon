@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
-import Footer from '../../components/Footer.astro'; // Layout handles it, but good for explicit dependency if moved out
 import Map from '../../components/Map.astro';
 import { races } from '../../data/races';
 
@@ -23,103 +22,109 @@ if (!race) {
 }
 ---
 
-<Layout title={`${race.title} - Elsassman Triathlon`}>
+<Layout title={`${race.title} - ELSASSMAN`}>
   <Navbar />
   
-  <main class="pt-24 pb-12">
+  <main class="pt-32 pb-24">
     <!-- Hero Header -->
-    <section class="relative py-20 px-4 overflow-hidden mb-12">
-      <div class={`absolute inset-0 opacity-10 bg-gradient-to-br ${race.color}`}></div>
-      <div class="container mx-auto max-w-5xl relative z-10">
-        <div class="inline-block px-3 py-1 mb-4 border border-white/20 rounded-full text-xs font-bold uppercase tracking-widest text-white/80">
-            {slug === 'distance-l' || slug === 'distance-m' || slug === 'distance-s' ? 'Adult Race' : 'Kids Race'}
+    <section class="relative py-32 px-6 lg:px-12 overflow-hidden mb-24 bg-brand-accent">
+      <div class="max-w-7xl mx-auto relative z-10">
+      <img 
+        src={`/assets/photography/race-${slug.replace('distance-', '')}.jpg`} 
+        alt={race.title} 
+        class="absolute inset-0 w-full h-full object-cover opacity-20"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-60"></div>
+      <div class="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
+          <div class="absolute top-0 right-0 font-tech text-[20vw] font-black italic opacity-10">RACE</div>
+      </div>
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="inline-flex items-center gap-4 mb-8">
+            <div class="w-8 h-[2px] bg-brand-primary"></div>
+            <span class="font-tech text-xs font-black uppercase tracking-[0.4em] text-brand-primary">
+                {slug.includes('avenir') ? 'Youth Category' : 'Adult Competition'}
+            </span>
         </div>
-        <h1 class="text-6xl md:text-8xl font-black uppercase mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+        <h1 class="text-5xl md:text-8xl lg:text-[12rem] font-black uppercase italic leading-[0.8] mb-12 text-white tracking-tighter">
           {race.title}
         </h1>
-        <p class={`text-2xl md:text-3xl font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r ${race.color} mb-8`}>
+        <p class={`text-2xl md:text-4xl lg:text-5xl font-display font-black uppercase italic tracking-tight text-white/50 mb-12`}>
           {race.subtitle}
         </p>
-        <p class="text-xl text-gray-300 max-w-2xl leading-relaxed mb-8">
+        <div class="w-full h-[1px] bg-white/5 mb-12"></div>
+        <p class="text-xl md:text-2xl text-white font-body uppercase tracking-wider font-bold max-w-3xl leading-relaxed mb-12">
           {race.longDescription || race.description}
         </p>
         
-        <div class="flex flex-wrap gap-4">
-            <a href="https://www.elsassman.com/inscriptions" class="btn-primary">Register Now</a>
-            {race.gpx?.swim && <a href={race.gpx.swim} target="_blank" class="px-6 py-3 border border-white/20 rounded-none uppercase font-bold text-sm hover:bg-white hover:text-black transition-colors">GPX Swim</a>}
+        <div class="flex flex-wrap gap-8">
+            <a href="/inscriptions" class="btn-primary px-12">START REGISTRATION</a>
+            {race.gpx?.swim && <a href={race.gpx.swim} target="_blank" class="btn-secondary">DOWNLOAD GPX</a>}
         </div>
       </div>
     </section>
 
     <!-- Details Grid -->
-    <section class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-      <!-- Distances -->
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors">
-        <h3 class="text-gray-400 uppercase tracking-widest text-sm font-bold mb-6">Course Distances</h3>
-        <ul class="space-y-6">
-            <li class="flex items-center gap-6">
-                <span class="w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl font-bold">S</span>
+    <section class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-24">
+      <!-- Distances Instruments -->
+      <div class="lg:col-span-4 bg-brand-surface border border-white/5 p-8 lg:p-12 relative group">
+        <div class="absolute top-0 left-0 w-2 h-full bg-brand-primary"></div>
+        <h3 class="font-tech text-xs text-white/20 uppercase tracking-[0.4em] mb-12 italic">Performance Metrics</h3>
+        <ul class="space-y-12">
+            <li class="flex items-center gap-8">
+                <div class="w-14 h-14 bg-white/5 flex items-center justify-center text-2xl font-black italic border border-white/5 group-hover:bg-brand-primary group-hover:text-black transition-all">S</div>
                 <div>
-                    <span class="block text-2xl font-bold text-white">{race.swim}</span>
-                    <span class="text-xs text-gray-500 uppercase">Swim</span>
+                    <span class="block text-4xl font-display font-black text-white leading-none mb-1">{race.swim}</span>
+                    <span class="font-tech text-[10px] text-white/30 uppercase tracking-[0.3em]">Swim / Open Water</span>
                 </div>
             </li>
-            <li class="flex items-center gap-6">
-                <span class="w-12 h-12 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-xl font-bold">B</span>
+            <li class="flex items-center gap-8">
+                <div class="w-14 h-14 bg-white/5 flex items-center justify-center text-2xl font-black italic border border-white/5 group-hover:bg-brand-secondary group-hover:text-black transition-all">B</div>
                 <div>
-                    <span class="block text-2xl font-bold text-white">{race.bike}</span>
-                    <span class="text-xs text-gray-500 uppercase">Bike</span>
+                    <span class="block text-4xl font-display font-black text-white leading-none mb-1">{race.bike}</span>
+                    <span class="font-tech text-[10px] text-white/30 uppercase tracking-[0.3em]">Bike / Elevation</span>
                 </div>
             </li>
-            <li class="flex items-center gap-6">
-                <span class="w-12 h-12 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-xl font-bold">R</span>
+            <li class="flex items-center gap-8">
+                <div class="w-14 h-14 bg-white/5 flex items-center justify-center text-2xl font-black italic border border-white/5 group-hover:bg-white group-hover:text-black transition-all">R</div>
                 <div>
-                    <span class="block text-2xl font-bold text-white">{race.run}</span>
-                    <span class="text-xs text-gray-500 uppercase">Run</span>
+                    <span class="block text-4xl font-display font-black text-white leading-none mb-1">{race.run}</span>
+                    <span class="font-tech text-[10px] text-white/30 uppercase tracking-[0.3em]">Run / Technical</span>
                 </div>
             </li>
         </ul>
-        
-        {race.gpx && (
-            <div class="mt-8 pt-6 border-t border-white/10 flex flex-col gap-3">
-                <h4 class="text-xs font-bold uppercase text-gray-500 mb-2">Download Courses</h4>
-                <div class="flex gap-2">
-                    {race.gpx.bike && <a href={race.gpx.bike} class="text-xs bg-white/10 hover:bg-brand-primary hover:text-black px-3 py-2 rounded transition-colors">GPX Bike</a>}
-                    {race.gpx.run && <a href={race.gpx.run} class="text-xs bg-white/10 hover:bg-brand-primary hover:text-black px-3 py-2 rounded transition-colors">GPX Run</a>}
-                </div>
-            </div>
-        )}
       </div>
 
       <!-- Schedule -->
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors">
-        <h3 class="text-gray-400 uppercase tracking-widest text-sm font-bold mb-6">Race Schedule</h3>
-        <div class="relative pl-4 border-l border-white/10 space-y-6">
+      <div class="lg:col-span-5 bg-black border border-white/5 p-8 lg:p-12 relative">
+        <h3 class="font-tech text-xs text-white/20 uppercase tracking-[0.4em] mb-12 italic">Timeline</h3>
+        <div class="space-y-10">
             {race.schedule.map((item) => (
-                <div class="relative">
-                    <span class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-brand-primary"></span>
-                    <span class="block text-xl font-bold text-white">{item.time}</span>
-                    <span class="text-sm text-gray-400">{item.event}</span>
+                <div class="flex gap-8 group">
+                    <span class="font-tech text-2xl font-black text-brand-primary tabular-nums group-hover:text-white transition-colors">{item.time}</span>
+                    <div class="pt-1">
+                        <span class="block text-lg font-display font-black text-white uppercase italic group-hover:text-brand-primary transition-colors">{item.event}</span>
+                        <div class="w-8 h-[1px] bg-white/5 mt-2 group-hover:w-full transition-all"></div>
+                    </div>
                 </div>
             ))}
         </div>
       </div>
 
-      <!-- Rules & Price -->
-      <div class="flex flex-col gap-8">
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col justify-center items-center text-center flex-1">
-            <h3 class="text-gray-400 uppercase tracking-widest text-sm font-bold mb-2">Entry Fee</h3>
-            <div class="text-6xl font-black text-white mb-2">{race.price}</div>
-            <p class="text-sm text-gray-500 mb-6 font-mono">EARLY BIRD PRICE</p>
-            <a href="https://www.elsassman.com/inscriptions" class="btn-primary w-full">Register Now</a>
+      <!-- Fees & Rules -->
+      <div class="lg:col-span-3 flex flex-col gap-6">
+          <div class="bg-brand-primary p-12 flex flex-col justify-center items-center text-center flex-1" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);">
+            <span class="font-tech text-[10px] font-black text-black/50 uppercase tracking-[0.3em] mb-4">Registration Fee</span>
+            <div class="text-7xl font-display font-black text-black leading-none mb-2">{race.price}</div>
+            <p class="font-tech text-[9px] text-black/60 uppercase tracking-widest font-black">Limited Spots Available</p>
           </div>
           
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-              <h3 class="text-gray-400 uppercase tracking-widest text-sm font-bold mb-4">Brief Rules</h3>
-              <ul class="space-y-2 text-sm text-gray-300">
+          <div class="bg-brand-accent p-8 border border-white/5">
+              <h3 class="font-tech text-[10px] text-white/20 uppercase tracking-[0.4em] mb-6 font-black italic">Core Directives</h3>
+              <ul class="space-y-4">
                   {race.rules.map(rule => (
-                      <li class="flex gap-2">
-                          <span class="text-red-500">•</span> {rule}
+                      <li class="flex gap-4">
+                          <span class="text-brand-primary font-black">•</span> 
+                          <span class="font-body text-[10px] uppercase font-bold tracking-widest text-white/60">{rule}</span>
                       </li>
                   ))}
               </ul>
@@ -128,12 +133,14 @@ if (!race) {
     </section>
 
     {race.map && (
-      <section class="container mx-auto px-4 mb-16">
-        <div class="flex items-end justify-between mb-8 text-end">
-             <h3 class="text-2xl font-bold uppercase">Course Map</h3>
-             <span class="text-xs text-gray-500">Interactive Map</span>
+      <section class="container mx-auto px-6 mb-24">
+        <div class="flex items-center gap-4 mb-12">
+             <div class="w-12 h-1 bg-brand-secondary"></div>
+             <h3 class="text-4xl font-display font-black italic uppercase">Course Map</h3>
         </div>
-        <Map />
+        <div class="border border-white/5">
+            <Map />
+        </div>
       </section>
     )}
   </main>

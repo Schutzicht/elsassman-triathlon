@@ -1,72 +1,70 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import Navbar from '../components/Navbar.astro';
+import { motion } from 'framer-motion';
 ---
 
-<Layout title="Volunteers - Elsassman Triathlon">
+<Layout title="JOIN THE CREW - ELSASSMAN">
     <Navbar />
     
-    <main class="pt-32 pb-20 container mx-auto px-4">
-        <div class="flex flex-col lg:flex-row gap-16">
+    <main class="pt-48 pb-32 max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="flex flex-col lg:flex-row gap-24 items-start">
             <div class="lg:w-1/2">
-                <h1 class="text-5xl md:text-7xl font-black uppercase mb-8 text-white">Join the <span class="text-brand-primary">Crew</span></h1>
-                <p class="text-xl text-gray-400 mb-8 leading-relaxed">
-                    Without you, nothing is possible! We are looking for 350 volunteers to make this weekend unforgettable.
-                    Join the Elsassman family and experience the event from the inside.
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-1 bg-brand-primary"></div>
+                    <span class="font-tech text-xs font-black uppercase tracking-[0.4em] text-white/40">Volunteer Program</span>
+                </div>
+                <h1 class="text-7xl md:text-9xl font-black uppercase italic leading-[0.8] mb-12 text-white tracking-tighter">
+                   JOIN THE <br/> <span class="text-brand-primary">CREW</span>
+                </h1>
+                <p class="text-xl text-white/50 mb-12 leading-relaxed font-body uppercase tracking-wider font-bold max-w-xl">
+                    Without you, nothing is possible. We are looking for 350 committed individuals to build the myth.
+                    Experience the adrenaline from the inside.
                 </p>
 
-                <div class="bg-white/5 border border-white/10 rounded-xl p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-white mb-4">Why Volunteer?</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-4">
-                            <span class="w-6 h-6 rounded-full bg-brand-primary/20 text-brand-primary flex items-center justify-center font-bold">✓</span>
-                            <span class="text-gray-300">Official Elsassman T-Shirt</span>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="w-6 h-6 rounded-full bg-brand-primary/20 text-brand-primary flex items-center justify-center font-bold">✓</span>
-                            <span class="text-gray-300">Meals and drinks provided</span>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="w-6 h-6 rounded-full bg-brand-primary/20 text-brand-primary flex items-center justify-center font-bold">✓</span>
-                            <span class="text-gray-300">Invitation to the Volunteers Party in September</span>
-                        </li>
+                <div class="bg-brand-surface border border-white/5 p-12 relative overflow-hidden group mb-12">
+                    <img src="/assets/photography/volunteer-2.jpg" class="absolute inset-0 w-full h-full object-cover opacity-5 group-hover:opacity-10 transition-opacity" />
+                    <div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+                        <svg class="w-32 h-32 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-width="1"/></svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-black text-white mb-8 italic uppercase">The Rewards</h3>
+                    <ul class="space-y-6">
+                        {[
+                            "Official Elsassman Crew Gear",
+                            "Full catering during shifts",
+                            "Access to the Exclusive Crew Party",
+                            "Fuel for the athletes, pride for the team"
+                        ].map(item => (
+                            <li class="flex items-center gap-6">
+                                <div class="w-2 h-2 bg-brand-primary rotate-45"></div>
+                                <span class="text-white/60 font-tech text-xs font-black uppercase tracking-widest">{item}</span>
+                            </li>
+                        ))}
                     </ul>
                 </div>
 
                 <a href="https://vorg.fr/fastguebwiller/elsassman" target="_blank" class="btn-primary inline-block text-center w-full md:w-auto">
-                    Sign Up Now
+                    APPLY NOW
                 </a>
             </div>
 
-            <div class="lg:w-1/2 grid grid-cols-1 gap-6">
+            <div class="lg:w-1/2 grid grid-cols-1 gap-4 w-full relative">
+                <img src="/assets/photography/volunteer-1.jpg" class="absolute -top-24 -right-24 w-96 h-96 object-cover opacity-10 rounded-full blur-3xl" />
                 <!-- Roles -->
-                <div class="group">
-                    <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-colors cursor-pointer">
-                        <h3 class="text-xl font-bold text-white uppercase mb-2">Swim Team</h3>
-                        <p class="text-gray-400 text-sm">Secure the swim course, manage the start, and assist athletes out of the water.</p>
+                {[
+                    { title: "Swim Support", desc: "Safety on the water, entry/exit management." },
+                    { title: "Course Marshal", desc: "Technical guidance on the bike and run trails." },
+                    { title: "Aid Station", desc: "High-speed fueling and athlete encouragement." },
+                    { title: "Logistics Hub", desc: "Bib distribution, bike park management." }
+                ].map(role => (
+                    <div class="group relative">
+                        <div class="bg-brand-surface/40 border border-white/5 p-8 transition-all duration-500 group-hover:bg-brand-surface/80 group-hover:border-brand-primary/30 cursor-pointer">
+                            <h3 class="text-2xl font-display font-black text-white uppercase italic mb-2 group-hover:text-brand-primary transition-colors">{role.title}</h3>
+                            <p class="text-white/30 font-tech text-[10px] uppercase tracking-widest leading-loose">{role.desc}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="group">
-                    <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-colors cursor-pointer">
-                        <h3 class="text-xl font-bold text-white uppercase mb-2">Course Marshals</h3>
-                        <p class="text-gray-400 text-sm">Guide athletes on the bike and run courses. Ensure safety and manage traffic.</p>
-                    </div>
-                </div>
-                <div class="group">
-                    <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-colors cursor-pointer">
-                        <h3 class="text-xl font-bold text-white uppercase mb-2">Aid Stations</h3>
-                        <p class="text-gray-400 text-sm">Distribute energy! Hand out water, fruit, and smiles to athletes.</p>
-                    </div>
-                </div>
-                <div class="group">
-                    <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-colors cursor-pointer">
-                        <h3 class="text-xl font-bold text-white uppercase mb-2">Transition & Logistics</h3>
-                        <p class="text-gray-400 text-sm">Manage the bike park, bib distribution, and site setup/teardown.</p>
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
     </main>
-    
 </Layout>

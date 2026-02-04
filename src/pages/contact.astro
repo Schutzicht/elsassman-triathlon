@@ -3,73 +3,80 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 ---
 
-<Layout title="Contact - Elsassman Triathlon">
+<Layout title="COMMAND CENTER - ELSASSMAN">
     <Navbar />
     
-    <main class="pt-32 pb-20 container mx-auto px-4">
-        <div class="flex flex-col lg:flex-row gap-16">
+    <main class="pt-48 pb-32 max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="flex flex-col lg:flex-row gap-24">
             <div class="lg:w-1/2">
-                <h1 class="text-5xl md:text-7xl font-black uppercase mb-8 text-white">Get in <span class="text-brand-primary">Touch</span></h1>
-                <p class="text-xl text-gray-400 mb-12 leading-relaxed">
-                    Have a question about the race, registration, or logistics? We are here to help you prepare for your best performance.
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-1 bg-brand-primary"></div>
+                    <span class="font-tech text-xs font-black uppercase tracking-[0.4em] text-white/40">Communication Hub</span>
+                </div>
+                <h1 class="text-7xl md:text-9xl font-black uppercase italic leading-[0.8] mb-12 text-white tracking-tighter">
+                    COMMAND <br/> <span class="text-brand-primary">CENTER</span>
+                </h1>
+                <p class="text-xl text-white/50 mb-12 leading-relaxed font-body uppercase tracking-wider font-bold max-w-xl">
+                    Direct access for athletes, partners, and the press. Our technical team is on standby to assist your mission.
                 </p>
 
-                <div class="space-y-8">
-                    <div>
-                        <h3 class="text-sm font-bold uppercase text-gray-500 tracking-widest mb-2">Email</h3>
-                        <a href="mailto:inscription@fast-guebwiller.com" class="text-2xl font-bold text-white hover:text-brand-primary transition-colors">inscription@fast-guebwiller.com</a>
+                <div class="space-y-12">
+                    <div class="group">
+                        <h3 class="font-tech text-[10px] font-black uppercase text-white/20 tracking-[0.4em] mb-4 italic">Encrypted Transmission</h3>
+                        <a href="mailto:inscription@fast-guebwiller.com" class="text-3xl font-display font-black text-white hover:text-brand-primary transition-all uppercase italic">
+                            inscription@fast-guebwiller.com
+                        </a>
                     </div>
                     <div>
-                        <h3 class="text-sm font-bold uppercase text-gray-500 tracking-widest mb-2">Organizers</h3>
-                        <p class="text-xl font-bold text-white">FAST Guebwiller</p>
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-bold uppercase text-gray-500 tracking-widest mb-2">Locations</h3>
-                        <div class="mb-4">
-                            <p class="font-bold text-white">Swim Start</p>
-                            <p class="text-gray-400">Plan d'eau Ensisheim, 68190 Ensisheim</p>
-                        </div>
-                        <div>
-                            <p class="font-bold text-white">Finish Line</p>
-                            <p class="text-gray-400">Stade Throo, Route d'Issenheim, 68500 Guebwiller</p>
+                        <h3 class="font-tech text-[10px] font-black uppercase text-white/20 tracking-[0.4em] mb-4 italic">HQ Location</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div class="bg-brand-surface border-l border-white/5 p-6 group">
+                                <p class="font-tech text-[10px] text-brand-primary font-black uppercase tracking-widest mb-2">Base Alpha (Start)</p>
+                                <p class="text-white/60 font-body text-xs font-bold uppercase tracking-widest leading-loose">Plan d'eau Ensisheim<br/>68190 Ensisheim, Alsace</p>
+                            </div>
+                            <div class="bg-brand-surface border-l border-white/5 p-6 group">
+                                <p class="font-tech text-[10px] text-brand-secondary font-black uppercase tracking-widest mb-2">Base Omega (Finish)</p>
+                                <p class="text-white/60 font-body text-xs font-bold uppercase tracking-widest leading-loose">Stade Throo, Route d'Issenheim<br/>68500 Guebwiller, Alsace</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="lg:w-1/2">
-                <form class="glass-panel p-8 md:p-10 rounded-2xl space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="name" class="block text-sm font-bold text-gray-400 mb-2 uppercase">Name</label>
-                            <input type="text" id="name" class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:outline-none transition-colors" placeholder="John Doe">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-bold text-gray-400 mb-2 uppercase">Email</label>
-                            <input type="email" id="email" class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:outline-none transition-colors" placeholder="john@example.com">
-                        </div>
+                <form class="bg-brand-surface/30 border border-white/5 p-12 md:p-16 relative group">
+                    <div class="absolute top-0 right-0 w-24 h-24 pointer-events-none opacity-5">
+                         <svg class="w-full h-full text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-width="1"/></svg>
                     </div>
                     
-                    <div>
-                        <label for="subject" class="block text-sm font-bold text-gray-400 mb-2 uppercase">Subject</label>
-                        <select id="subject" class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:outline-none transition-colors">
-                            <option>Registration Question</option>
-                            <option>Logistics / Course</option>
-                            <option>Volunteering</option>
-                            <option>Other</option>
-                        </select>
+                    <div class="grid grid-cols-1 gap-10 mb-10">
+                        <div class="space-y-4">
+                            <label class="font-tech text-[10px] font-black uppercase text-white/20 tracking-[0.4em]">Full Name</label>
+                            <input type="text" class="w-full bg-black/60 border border-white/10 px-8 py-5 text-white font-display font-bold uppercase tracking-widest focus:border-brand-primary focus:outline-none transition-all placeholder:text-white/5" placeholder="IDENTIFIER">
+                        </div>
+                        <div class="space-y-4">
+                            <label class="font-tech text-[10px] font-black uppercase text-white/20 tracking-[0.4em]">Email Alias</label>
+                            <input type="email" class="w-full bg-black/60 border border-white/10 px-8 py-5 text-white font-display font-bold uppercase tracking-widest focus:border-brand-primary focus:outline-none transition-all placeholder:text-white/5" placeholder="CONTACT@DOMAIN.COM">
+                        </div>
+                        <div class="space-y-4">
+                            <label class="font-tech text-[10px] font-black uppercase text-white/20 tracking-[0.4em]">Transmission Type</label>
+                            <select class="w-full bg-black/60 border border-white/10 px-8 py-5 text-white font-display font-bold uppercase tracking-widest focus:border-brand-primary focus:outline-none transition-all appearance-none">
+                                <option>General Inquiry</option>
+                                <option>Technical / Race Rules</option>
+                                <option>Logistics / Media</option>
+                                <option>Sponsorship</option>
+                            </select>
+                        </div>
+                        <div class="space-y-4">
+                            <label class="font-tech text-[10px] font-black uppercase text-white/20 tracking-[0.4em]">Message Payload</label>
+                            <textarea rows="6" class="w-full bg-black/60 border border-white/10 px-8 py-5 text-white font-display font-bold uppercase tracking-widest focus:border-brand-primary focus:outline-none transition-all placeholder:text-white/5" placeholder="WRITE YOUR TRANSMISSION..."></textarea>
+                        </div>
                     </div>
 
-                    <div>
-                        <label for="message" class="block text-sm font-bold text-gray-400 mb-2 uppercase">Message</label>
-                        <textarea id="message" rows="5" class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:outline-none transition-colors" placeholder="How can we help?"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-primary w-full">Send Message</button>
-                    <p class="text-xs text-gray-600 text-center mt-4">We usually reply within 24-48 hours.</p>
+                    <button type="submit" class="btn-primary w-full py-6 text-xl">EXECUTE TRANSMISSION</button>
+                    <p class="font-tech text-[8px] text-white/20 uppercase tracking-[0.4em] text-center mt-8">Expect response within 24.00 - 48.00 HOURS.</p>
                 </form>
             </div>
         </div>
     </main>
-    
 </Layout>
