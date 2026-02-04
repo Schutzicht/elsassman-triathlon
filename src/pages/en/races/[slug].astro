@@ -23,7 +23,7 @@ if (!race) {
 ---
 
 <Layout title={`${race.title} - ELSASSMAN`}>
-  <Navbar />
+  <Navbar lang="en" />
   
   <main class="pt-32 pb-24">
     <!-- Hero Header -->
@@ -57,7 +57,7 @@ if (!race) {
         </p>
         
         <div class="flex flex-wrap gap-8">
-            <a href="/inscriptions" class="btn-primary px-12">START REGISTRATION</a>
+            <a href="/en/inscriptions" class="btn-primary px-12">START REGISTRATION</a>
             {race.gpx?.swim && <a href={race.gpx.swim} target="_blank" class="btn-secondary">DOWNLOAD GPX</a>}
         </div>
       </div>

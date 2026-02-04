@@ -1,3 +1,8 @@
 ---
 return Astro.redirect('/en/');
 ---
+
+<script is:inline>
+    // Fallback for some static environments
+    window.location.href = "/en/";
+</script>

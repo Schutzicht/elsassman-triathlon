@@ -1,4 +1,42 @@
 ---
+const { lang = Astro.currentLocale || 'en' } = Astro.props;
+
+const translations = {
+    en: {
+        tagline: "Push beyond the",
+        taglineSpan: "Impossible",
+        navTitle: "Navigation",
+        infoTitle: "Information",
+        ctaTitle: "Ready to race?",
+        ctaDesc: "Join 1,000+ athletes in Alsace for the 11th edition.",
+        ctaButton: "REGISTER NOW",
+        privacy: "Privacy Policy",
+        rules: "Rules & Regulations",
+        volunteers: "Volunteers",
+        races: "Races",
+        schedule: "Schedule",
+        guide: "Athlete Guide",
+        contact: "Contact"
+    },
+    fr: {
+        tagline: "Repousser les limites de",
+        taglineSpan: "l'Impossible",
+        navTitle: "Navigation",
+        infoTitle: "Informations",
+        ctaTitle: "Prêt à courir ?",
+        ctaDesc: "Rejoignez plus de 1 000 athlètes en Alsace pour la 11ème édition.",
+        ctaButton: "S'INSCRIRE MAINTENANT",
+        privacy: "Politique de Confidentialité",
+        rules: "Règlement",
+        volunteers: "Bénévoles",
+        races: "Courses",
+        schedule: "Programme",
+        guide: "Guide de l'Athlète",
+        contact: "Contact"
+    }
+};
+
+const t = translations[lang === 'fr' ? 'fr' : 'en'];
 ---
 
 <footer class="bg-black text-white py-12 lg:py-20 border-t border-white/5 relative z-10" id="main-footer">
@@ -6,7 +44,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-24">
             <!-- Brand & Tagline -->
             <div class="space-y-8">
-                <a href="/" class="block">
+                <a href={`/${lang}`} class="block">
                     <img 
                         src="https://static.wixstatic.com/media/92dadc_7f1facba800c400bbf54d63deb452842~mv2.png/v1/crop/x_221,y_893,w_4560,h_1320/fill/w_176,h_53,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/elsassman%20V3_Plan%20de%20travail%2010.png" 
                         alt="Logo" 
@@ -14,7 +52,7 @@
                     />
                 </a>
                 <p class="text-2xl font-display font-bold leading-tight uppercase">
-                    Push beyond the <br/> <span class="text-brand-primary">Impossible</span>.
+                    {t.tagline} <br/> <span class="text-brand-primary">{t.taglineSpan}</span>.
                 </p>
                 <div class="flex gap-4">
                     <a href="https://facebook.com/elsassman" target="_blank" class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-brand-primary hover:border-brand-primary hover:text-white transition-all">
@@ -28,32 +66,31 @@
 
             <!-- Navigation -->
             <div class="space-y-6">
-                <h3 class="font-tech text-xs font-black text-white/40 uppercase tracking-widest">Navigation</h3>
+                <h3 class="font-tech text-xs font-black text-white/40 uppercase tracking-widest">{t.navTitle}</h3>
                 <nav class="flex flex-col space-y-4">
-                    {["Races", "Schedule", "Athlete Guide", "Contact"].map(item => (
-                        <a href={`/${item.toLowerCase().replace(' ', '-')}`} class="text-lg font-bold uppercase hover:text-brand-primary transition-colors">
-                            {item}
-                        </a>
-                    ))}
+                    <a href={`/${lang}/#races`} class="text-lg font-bold uppercase hover:text-brand-primary transition-colors">{t.races}</a>
+                    <a href={`/${lang}/info/schedule`} class="text-lg font-bold uppercase hover:text-brand-primary transition-colors">{t.schedule}</a>
+                    <a href={`/${lang}/info/athlete-guide`} class="text-lg font-bold uppercase hover:text-brand-primary transition-colors">{t.guide}</a>
+                    <a href={`/${lang}/contact`} class="text-lg font-bold uppercase hover:text-brand-primary transition-colors">{t.contact}</a>
                 </nav>
             </div>
 
             <!-- Legal/Info -->
             <div class="space-y-6">
-                <h3 class="font-tech text-xs font-black text-white/40 uppercase tracking-widest">Information</h3>
+                <h3 class="font-tech text-xs font-black text-white/40 uppercase tracking-widest">{t.infoTitle}</h3>
                 <nav class="flex flex-col space-y-4">
-                    <a href="/privacy" class="text-sm font-bold uppercase hover:text-brand-primary transition-colors">Privacy Policy</a>
-                    <a href="/rules" class="text-sm font-bold uppercase hover:text-brand-primary transition-colors">Rules & Regulations</a>
-                    <a href="/benevoles" class="text-sm font-bold uppercase hover:text-brand-primary transition-colors">Volunteers</a>
+                    <a href="#" class="text-sm font-bold uppercase hover:text-brand-primary transition-colors">{t.privacy}</a>
+                    <a href={`/${lang}/info/rules`} class="text-sm font-bold uppercase hover:text-brand-primary transition-colors">{t.rules}</a>
+                    <a href={`/${lang}/benevoles`} class="text-sm font-bold uppercase hover:text-brand-primary transition-colors">{t.volunteers}</a>
                 </nav>
             </div>
 
             <!-- Registration -->
             <div class="space-y-6">
                 <div class="bg-brand-surface border border-white/10 p-8 space-y-6 group">
-                    <h4 class="text-xl font-bold uppercase">Ready to race?</h4>
-                    <p class="text-xs text-white/60 font-medium leading-relaxed">Join 1,000+ athletes in Alsace for the 11th edition.</p>
-                    <a href="/inscriptions" class="btn-primary w-full text-center block py-4 text-xs">REGISTER NOW</a>
+                    <h4 class="text-xl font-bold uppercase">{t.ctaTitle}</h4>
+                    <p class="text-xs text-white/60 font-medium leading-relaxed">{t.ctaDesc}</p>
+                    <a href={`/${lang}/inscriptions`} class="btn-primary w-full text-center block py-4 text-xs">{t.ctaButton}</a>
                 </div>
             </div>
         </div>

@@ -63,7 +63,7 @@ const links = [
         class="w-full max-w-7xl bg-brand-dark/20 backdrop-blur-3xl border border-white/5 px-6 lg:px-12 py-3 transition-all duration-500 relative"
     >
         <div class="flex items-center justify-between">
-            <a href="/" class="flex items-center space-x-3 z-50 group">
+            <a href={`/${lang}`} class="flex items-center space-x-3 z-50 group">
                 <img 
                     src="https://static.wixstatic.com/media/92dadc_7f1facba800c400bbf54d63deb452842~mv2.png/v1/crop/x_221,y_893,w_4560,h_1320/fill/w_176,h_53,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/elsassman%20V3_Plan%20de%20travail%2010.png" 
                     alt="Logo" 
@@ -72,12 +72,12 @@ const links = [
                 />
             </a>
             
-            <div class="flex md:order-2 items-center">
+            <div class="flex items-center space-x-4 md:space-x-8 md:order-2">
                 <!-- Desktop Language Selector -->
-                <div class="hidden md:flex items-center space-x-3 mr-8 border-r border-white/10 pr-8">
-                    <a href={enHref} class={`text-[10px] font-black tracking-widest transition-colors ${lang === 'en' ? 'text-brand-primary' : 'text-white/40 hover:text-white'}`}>EN</a>
+                <div class="hidden md:flex items-center space-x-3 border-r border-white/10 pr-8">
+                    <a href={enHref} class={`text-[11px] font-black tracking-widest transition-colors ${lang === 'en' ? 'text-brand-primary' : 'text-white/60 hover:text-white'}`}>EN</a>
                     <span class="text-white/10">|</span>
-                    <a href={frHref} class={`text-[10px] font-black tracking-widest transition-colors ${lang === 'fr' ? 'text-brand-primary' : 'text-white/40 hover:text-white'}`}>FR</a>
+                    <a href={frHref} class={`text-[11px] font-black tracking-widest transition-colors ${lang === 'fr' ? 'text-brand-primary' : 'text-white/60 hover:text-white'}`}>FR</a>
                 </div>
 
                 <button 
@@ -88,6 +88,14 @@ const links = [
                     <Menu class="w-6 h-6 transition-all" id="menu-icon-open" />
                     <X class="w-6 h-6 hidden transition-all" id="menu-icon-close" />
                 </button>
+
+                <!-- Mobile Language Selector Mini -->
+                <div class="flex items-center space-x-2 md:hidden">
+                    <a href={enHref} class={`text-[10px] font-black tracking-widest transition-colors ${lang === 'en' ? 'text-brand-primary' : 'text-white/60'}`}>EN</a>
+                    <span class="text-white/10 text-[8px]">/</span>
+                    <a href={frHref} class={`text-[10px] font-black tracking-widest transition-colors ${lang === 'fr' ? 'text-brand-primary' : 'text-white/60'}`}>FR</a>
+                </div>
+
                 <div class="hidden md:block">
                     <a href={`/${lang}/inscriptions`} class="btn-primary py-2 px-6 text-xs transition-all">
                         {t.register}
