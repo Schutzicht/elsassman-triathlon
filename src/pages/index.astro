@@ -18,7 +18,7 @@ import SocialFeed from '../components/SocialFeed.astro';
 			videoUrl="/assets/videos/hero-drone.mp4"
 		/>
 
-		<section class="relative z-30 px-6 lg:px-12 max-w-7xl mx-auto py-24">
+		<section class="relative z-30 px-6 lg:px-12 max-w-7xl mx-auto py-12 lg:py-24">
 			<Countdown />
 		</section>
 
@@ -79,7 +79,7 @@ import SocialFeed from '../components/SocialFeed.astro';
 
 		<section class="py-24 lg:py-40 bg-brand-surface relative overflow-hidden border-y border-white/5">
 			<!-- HUD Background Decor -->
-			<div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+			<div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none hidden lg:block">
                 <div class="absolute top-0 right-0 p-20 font-tech text-[10vw] font-black leading-none uppercase italic">MYTHICAL</div>
                 <div class="absolute bottom-0 left-0 p-20 font-tech text-[10vw] font-black leading-none uppercase italic">VOYAGE</div>
             </div>
@@ -130,7 +130,9 @@ import SocialFeed from '../components/SocialFeed.astro';
                         <div class="bg-white/5 aspect-square relative overflow-hidden group">
                            <img src="/assets/photography/finish-emotion.jpg" alt="Emotion" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" />
                         </div>
-					    <Map />
+					    <div class="hidden lg:block">
+                            <Map />
+                        </div>
                     </div>
 				</div>
 			</div>
