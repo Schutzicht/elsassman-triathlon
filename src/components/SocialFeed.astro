@@ -1,4 +1,26 @@
----
+const { lang = Astro.currentLocale || 'en' } = Astro.props;
+
+const translations = {
+    en: {
+        feedTitle: "Real-time Feed",
+        followTitle: "FOLLOW THE",
+        followTitleSpan: "CHALLENGE",
+        likes: "LIKES",
+        views: "VIEWS",
+        live: "LIVE FEED"
+    },
+    fr: {
+        feedTitle: "Flux en Temps Réel",
+        followTitle: "SUIVEZ LE",
+        followTitleSpan: "DÉFI",
+        likes: "J'AIME",
+        views: "VUES",
+        live: "EN DIRECT"
+    }
+};
+
+const t = translations[lang === 'fr' ? 'fr' : 'en'];
+
 const reels = [
     {
         id: 1,
@@ -43,10 +65,10 @@ const reels = [
         <div>
             <div class="flex items-center gap-3 mb-4">
                 <div class="w-1 h-8 bg-brand-primary"></div>
-                <span class="font-tech text-xs font-black uppercase tracking-[0.4em] text-white/40">Real-time Feed</span>
+                <span class="font-tech text-xs font-black uppercase tracking-[0.4em] text-white/40">{t.feedTitle}</span>
             </div>
             <h2 class="text-6xl font-display font-black text-white italic">
-                FOLLOW THE <span class="text-brand-secondary">CHALLENGE</span>
+                {t.followTitle} <span class="text-brand-secondary">{t.followTitleSpan}</span>
             </h2>
         </div>
         <a href="https://www.instagram.com/elsassman/" target="_blank" class="font-tech text-xs font-black uppercase tracking-widest text-brand-primary border border-brand-primary/20 hover:bg-brand-primary hover:text-black px-8 py-3 transition-all">
@@ -68,16 +90,16 @@ const reels = [
                     <!-- Stats -->
                     <div class="absolute bottom-0 left-0 w-full p-6 flex justify-between items-end text-white font-tech text-[10px] font-black uppercase tracking-widest">
                         <div class="flex items-center gap-2">
-                            <span class="text-brand-primary">{reel.likes}</span> LIKES
+                            <span class="text-brand-primary">{reel.likes}</span> {t.likes}
                         </div>
                         <div class="flex items-center gap-2">
-                            <span class="text-brand-secondary">{reel.views}</span> VIEWS
+                            <span class="text-brand-secondary">{reel.views}</span> {t.views}
                         </div>
                     </div>
 
                     <!-- Adrenaline Badge -->
                     <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <div class="bg-brand-primary text-black px-2 py-1 font-tech text-[8px] font-black uppercase tracking-tighter italic">LIVE FEED</div>
+                        <div class="bg-brand-primary text-black px-2 py-1 font-tech text-[8px] font-black uppercase tracking-tighter italic">{t.live}</div>
                     </div>
                 </a>
             ))}

@@ -4,9 +4,41 @@ interface Props {
   tagline: string;
   backgroundImage?: string;
   videoUrl?: string;
+  lang?: string;
 }
 
-const { title, tagline, backgroundImage = '/assets/hero-placeholder.jpg', videoUrl } = Astro.props;
+const { title, tagline, backgroundImage = '/assets/hero-placeholder.jpg', videoUrl, lang = Astro.currentLocale || 'en' } = Astro.props;
+
+const translations = {
+  en: {
+    swim: "Swim",
+    swimSpan: "Fast",
+    bike: "Bike",
+    bikeSpan: "Strong",
+    run: "Run to",
+    runSpan: "Win",
+    register: "Register Now",
+    explore: "Explore Races",
+    gps: "GPS COORDINATES",
+    altitude: "ALTITUDE GAIN",
+    status: "STATUS: OPEN FOR REGISTRATION"
+  },
+  fr: {
+    swim: "Nagez",
+    swimSpan: "Vite",
+    bike: "Roulez",
+    bikeSpan: "Fort",
+    run: "Courez pour",
+    runSpan: "Gagner",
+    register: "S'inscrire",
+    explore: "Découvrir",
+    gps: "COORDONNÉES GPS",
+    altitude: "GAIN D'ALTITUDE",
+    status: "STATUT: INSCRIPTIONS OUVERTES"
+  }
+};
+
+const t = translations[lang === 'fr' ? 'fr' : 'en'];
 ---
 
 <section class="relative h-screen min-h-[700px] flex items-center overflow-hidden bg-black">
@@ -38,9 +70,9 @@ const { title, tagline, backgroundImage = '/assets/hero-placeholder.jpg', videoU
     </div>
 
     <h1 class="text-5xl md:text-7xl lg:text-8xl xl:text-[clamp(4rem,8vw,9rem)] leading-[0.9] font-bold uppercase tracking-tight mb-8 animate-reveal" style="animation-delay: 0.4s;">
-      <span class="block text-white">Swim <span class="text-brand-primary">Fast</span></span>
-      <span class="block text-white">Bike <span class="text-brand-primary">Strong</span></span>
-      <span class="block text-white">Run to <span class="text-brand-primary">Win</span></span>
+      <span class="block text-white">{t.swim} <span class="text-brand-primary">{t.swimSpan}</span></span>
+      <span class="block text-white">{t.bike} <span class="text-brand-primary">{t.bikeSpan}</span></span>
+      <span class="block text-white">{t.run} <span class="text-brand-primary">{t.runSpan}</span></span>
     </h1>
     
     <p class="font-body text-lg md:text-xl text-white/50 max-w-2xl mb-12 uppercase tracking-widest font-bold animate-reveal" style="animation-delay: 0.6s;">
@@ -48,11 +80,11 @@ const { title, tagline, backgroundImage = '/assets/hero-placeholder.jpg', videoU
     </p>
     
     <div class="flex flex-col md:flex-row gap-8 justify-start items-start md:items-center animate-reveal" style="animation-delay: 0.8s;">
-      <a href="/inscriptions" class="btn-primary">
-         Register Now
+      <a href={`/${lang}/inscriptions`} class="btn-primary">
+         {t.register}
       </a>
-      <a href="#races" class="btn-secondary group">
-        Explore Races
+      <a href={`/${lang}/#races`} class="btn-secondary group">
+        {t.explore}
         <span class="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
       </a>
     </div>
@@ -60,9 +92,9 @@ const { title, tagline, backgroundImage = '/assets/hero-placeholder.jpg', videoU
 
   <!-- Data Stream Overlay -->
   <div class="absolute bottom-12 right-12 text-right opacity-30 font-tech text-[10px] z-20 hidden lg:block">
-      <div class="mb-2">GPS COORDINATES: 47.9077° N, 7.2132° E</div>
-      <div class="mb-2">ALTITUDE GAIN: +2500M</div>
-      <div class="text-brand-primary">STATUS: OPEN FOR REGISTRATION</div>
+      <div class="mb-2">{t.gps}: 47.9077° N, 7.2132° E</div>
+      <div class="mb-2">{t.altitude}: +2500M</div>
+      <div class="text-brand-primary">{t.status}</div>
   </div>
 </section>
 

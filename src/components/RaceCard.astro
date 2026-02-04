@@ -11,7 +11,26 @@ interface Props {
   delay?: string;
 }
 
-const { title, distance, swim, bike, run, link, image, delay = "0" } = Astro.props;
+const { title, distance, swim, bike, run, link, image, delay = "0", lang = Astro.currentLocale || 'en' } = Astro.props;
+
+const translations = {
+  en: {
+    type: "Challenge Type",
+    swim: "Swim",
+    bike: "Bike",
+    run: "Run",
+    details: "Full Details"
+  },
+  fr: {
+    type: "Type de Défi",
+    swim: "Natation",
+    bike: "Vélo",
+    run: "Course",
+    details: "Détails Complets"
+  }
+};
+
+const t = translations[lang === 'fr' ? 'fr' : 'en'];
 ---
 
 <a href={link} class={`group relative block w-full animate-fade-in-up`} style={`animation-delay: ${delay}ms`}>
@@ -33,7 +52,7 @@ const { title, distance, swim, bike, run, link, image, delay = "0" } = Astro.pro
     <div class="mb-12">
         <div class="flex items-center gap-3 mb-2">
             <span class="w-2 h-2 bg-brand-primary rounded-full animate-pulse"></span>
-            <span class="font-tech text-[10px] font-black uppercase tracking-[0.3em] text-white/40">Challenge Type</span>
+            <span class="font-tech text-[10px] font-black uppercase tracking-[0.3em] text-white/40">{t.type}</span>
         </div>
         <h3 class="text-3xl md:text-5xl font-black text-white group-hover:text-brand-primary transition-colors duration-500 leading-none mb-2">{title}</h3>
         <p class="font-tech text-xs text-white/40 uppercase tracking-widest">{distance}</p>
@@ -41,15 +60,15 @@ const { title, distance, swim, bike, run, link, image, delay = "0" } = Astro.pro
 
     <div class="grid grid-cols-3 gap-2 border-y border-white/5 py-6 mb-8 group-hover:border-white/10 transition-colors">
         <div class="text-center">
-            <span class="block font-tech text-[10px] text-white/30 uppercase mb-1">Swim</span>
+            <span class="block font-tech text-[10px] text-white/30 uppercase mb-1">{t.swim}</span>
             <span class="block font-display text-lg font-black">{swim}</span>
         </div>
         <div class="text-center border-x border-white/5 group-hover:border-white/10 transition-colors">
-            <span class="block font-tech text-[10px] text-white/30 uppercase mb-1">Bike</span>
+            <span class="block font-tech text-[10px] text-white/30 uppercase mb-1">{t.bike}</span>
             <span class="block font-display text-lg font-black">{bike}</span>
         </div>
         <div class="text-center">
-            <span class="block font-tech text-[10px] text-white/30 uppercase mb-1">Run</span>
+            <span class="block font-tech text-[10px] text-white/30 uppercase mb-1">{t.run}</span>
             <span class="block font-display text-lg font-black">{run}</span>
         </div>
     </div>
@@ -57,7 +76,7 @@ const { title, distance, swim, bike, run, link, image, delay = "0" } = Astro.pro
     <div class="flex justify-between items-center group-hover:translate-x-2 transition-all duration-500">
         <div class="flex items-center gap-2">
             <div class="w-8 h-[1px] bg-brand-primary/50 group-hover:w-12 transition-all"></div>
-            <span class="font-tech text-[10px] font-black uppercase tracking-widest text-white/60 group-hover:text-white">Full Details</span>
+            <span class="font-tech text-[10px] font-black uppercase tracking-widest text-white/60 group-hover:text-white">{t.details}</span>
         </div>
         <svg class="w-4 h-4 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="square" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>

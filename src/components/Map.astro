@@ -9,6 +9,33 @@ import 'leaflet/dist/leaflet.css';
 
   const initMaps = () => {
     const containers = document.querySelectorAll('.map-container');
+    const lang = document.documentElement.lang || 'en';
+    
+    const translations = {
+      en: {
+        swim: "Swim Start",
+        swimLoc: "Plan d'eau Ensisheim",
+        finish: "Finish & T2",
+        finishLoc: "Stade Throo, Guebwiller",
+        grandBallon: "Grand Ballon",
+        grandBallonLoc: "Summit Challenge",
+        markstein: "Le Markstein",
+        marksteinLoc: "Mountain Pass"
+      },
+      fr: {
+        swim: "Départ Natation",
+        swimLoc: "Plan d'eau Ensisheim",
+        finish: "Arrivée & T2",
+        finishLoc: "Stade Throo, Guebwiller",
+        grandBallon: "Grand Ballon",
+        grandBallonLoc: "Défi du Sommet",
+        markstein: "Le Markstein",
+        marksteinLoc: "Col de Montagne"
+      }
+    };
+
+    // @ts-ignore
+    const t = translations[lang] || translations.en;
     
     containers.forEach((container) => {
       // @ts-ignore
@@ -31,10 +58,10 @@ import 'leaflet/dist/leaflet.css';
       }).addTo(map);
 
       // Markers
-      L.marker([47.8654, 7.3524]).addTo(map).bindPopup('<b>Swim Start</b><br>Plan d\'eau Ensisheim');
-      L.marker([47.9086, 7.2133]).addTo(map).bindPopup('<b>Finish & T2</b><br>Stade Throo, Guebwiller');
-      L.marker([47.9012, 7.1022]).addTo(map).bindPopup('<b>Grand Ballon</b><br>Summit Challenge');
-      L.marker([47.9255, 7.0305]).addTo(map).bindPopup('<b>Le Markstein</b><br>Mountain Pass');
+      L.marker([47.8654, 7.3524]).addTo(map).bindPopup(`<b>${t.swim}</b><br>${t.swimLoc}`);
+      L.marker([47.9086, 7.2133]).addTo(map).bindPopup(`<b>${t.finish}</b><br>${t.finishLoc}`);
+      L.marker([47.9012, 7.1022]).addTo(map).bindPopup(`<b>${t.grandBallon}</b><br>${t.grandBallonLoc}`);
+      L.marker([47.9255, 7.0305]).addTo(map).bindPopup(`<b>${t.markstein}</b><br>${t.marksteinLoc}`);
 
       // Ensure map fits container
       setTimeout(() => map.invalidateSize(), 100);
