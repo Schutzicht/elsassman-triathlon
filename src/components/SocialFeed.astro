@@ -55,7 +55,7 @@ const reels = [
     </div>
 
     <!-- Scrolling Container -->
-    <div id="social-carousel" class="flex overflow-x-auto pb-12 gap-8 px-6 snap-x snap-mandatory scrollbar-hide transition-transform duration-700">
+    <div id="social-carousel" class="flex overflow-x-auto pb-12 gap-8 px-6 snap-x snap-mandatory scrollbar-hide transition-all duration-700 ease-out">
         {reels.map((reel) => (
             <a href={reel.link} target="_blank" class="snap-center shrink-0 w-72 h-[450px] relative overflow-hidden group border border-white/5 hover:border-brand-primary/40 transition-all duration-500">
                 <!-- Image -->
@@ -84,35 +84,34 @@ const reels = [
 </section>
 
 <script>
-    const carousel = document.getElementById('social-carousel');
-    
-    if (carousel && window.innerWidth < 768) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Slight delay before nudging
-                    setTimeout(() => {
-                        carousel.scrollTo({
-                            left: 100,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Nudge back after a moment
+    const initNudge = () => {
+        const carousel = document.getElementById('social-carousel');
+        
+        if (carousel && window.innerWidth < 768) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Perform the nudge with transform to avoid fighting scroll-snap
                         setTimeout(() => {
-                            carousel.scrollTo({
-                                left: 0,
-                                behavior: 'smooth'
-                            });
-                        }, 800);
-                    }, 500);
-                    
-                    observer.unobserve(carousel);
-                }
-            });
-        }, { threshold: 0.5 });
+                            carousel.style.transform = 'translateX(-60px)';
+                            
+                            setTimeout(() => {
+                                carousel.style.transform = 'translateX(0)';
+                            }, 600);
+                        }, 400);
+                        
+                        observer.unobserve(carousel);
+                    }
+                });
+            }, { threshold: 0.2 });
 
-        observer.observe(carousel);
-    }
+            observer.observe(carousel);
+        }
+    };
+
+    // Run on both initial load and view transitions
+    initNudge();
+    document.addEventListener('astro:page-load', initNudge);
 </script>
 
 <style>
