@@ -54,56 +54,64 @@ const reels = [
         </a>
     </div>
 
-    <!-- Scrolling Container -->
-    <div id="social-carousel" class="flex overflow-x-auto pb-12 gap-8 px-6 snap-x snap-mandatory scrollbar-hide transition-all duration-700 ease-out">
-        {reels.map((reel) => (
-            <a href={reel.link} target="_blank" class="snap-center shrink-0 w-72 h-[450px] relative overflow-hidden group border border-white/5 hover:border-brand-primary/40 transition-all duration-500">
-                <!-- Image -->
-                <img src={reel.image} alt="IG" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                
-                <!-- Overlay -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+    <!-- Scrolling Container Wrapper -->
+    <div class="relative overflow-hidden w-full group/carousel">
+        <div id="social-carousel" class="flex overflow-x-auto pb-12 gap-8 px-6 snap-x snap-mandatory scrollbar-hide">
+            {reels.map((reel) => (
+                <a href={reel.link} target="_blank" class="snap-center shrink-0 w-72 h-[450px] relative overflow-hidden group border border-white/5 hover:border-brand-primary/40 transition-all duration-500">
+                    <!-- Image -->
+                    <img src={reel.image} alt="IG" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
 
-                <!-- Stats -->
-                <div class="absolute bottom-0 left-0 w-full p-6 flex justify-between items-end text-white font-tech text-[10px] font-black uppercase tracking-widest">
-                    <div class="flex items-center gap-2">
-                        <span class="text-brand-primary">{reel.likes}</span> LIKES
+                    <!-- Stats -->
+                    <div class="absolute bottom-0 left-0 w-full p-6 flex justify-between items-end text-white font-tech text-[10px] font-black uppercase tracking-widest">
+                        <div class="flex items-center gap-2">
+                            <span class="text-brand-primary">{reel.likes}</span> LIKES
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-brand-secondary">{reel.views}</span> VIEWS
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-brand-secondary">{reel.views}</span> VIEWS
-                    </div>
-                </div>
 
-                <!-- Adrenaline Badge -->
-                <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div class="bg-brand-primary text-black px-2 py-1 font-tech text-[8px] font-black uppercase tracking-tighter italic">LIVE FEED</div>
-                </div>
-            </a>
-        ))}
+                    <!-- Adrenaline Badge -->
+                    <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="bg-brand-primary text-black px-2 py-1 font-tech text-[8px] font-black uppercase tracking-tighter italic">LIVE FEED</div>
+                    </div>
+                </a>
+            ))}
+        </div>
+
+        <!-- Visual "Swipe" Indicator (Hidden on Desktop) -->
+        <div class="absolute top-1/2 right-4 -translate-y-1/2 md:hidden pointer-events-none opacity-0 group-[.nudge-animate]/carousel:animate-fade-in-out">
+            <div class="bg-brand-primary/20 backdrop-blur-md rounded-full p-3 border border-brand-primary/30">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-brand-primary animate-swipe-hand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </div>
+        </div>
     </div>
 </section>
 
 <script>
     const initNudge = () => {
         const carousel = document.getElementById('social-carousel');
+        const container = carousel?.parentElement;
         
-        if (carousel && window.innerWidth < 768) {
+        if (carousel && container && window.innerWidth < 768) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Perform the nudge with transform to avoid fighting scroll-snap
+                        // Delay the nudge so the user sees the section settle first
                         setTimeout(() => {
-                            carousel.style.transform = 'translateX(-60px)';
-                            
-                            setTimeout(() => {
-                                carousel.style.transform = 'translateX(0)';
-                            }, 600);
-                        }, 400);
+                            container.classList.add('nudge-animate');
+                        }, 600);
                         
                         observer.unobserve(carousel);
                     }
                 });
-            }, { threshold: 0.2 });
+            }, { threshold: 0.3 });
 
             observer.observe(carousel);
         }
@@ -117,4 +125,34 @@ const reels = [
 <style>
     .scrollbar-hide::-webkit-scrollbar { display: none; }
     .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+    @keyframes nudge-swipe {
+        0%, 100% { transform: translateX(0); }
+        35% { transform: translateX(-120px); }
+        65% { transform: translateX(10px); }
+    }
+
+    @keyframes swipe-hand {
+        0%, 100% { transform: translateX(50px); opacity: 0; }
+        30% { transform: translateX(0); opacity: 1; }
+        60% { transform: translateX(-20px); opacity: 1; }
+        90% { transform: translateX(-50px); opacity: 0; }
+    }
+
+    @keyframes fade-in-out {
+        0%, 100% { opacity: 0; }
+        20%, 80% { opacity: 1; }
+    }
+
+    .nudge-animate #social-carousel {
+        animation: nudge-swipe 1.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
+    }
+
+    .animate-swipe-hand {
+        animation: swipe-hand 1.6s ease-in-out forwards;
+    }
+
+    .animate-fade-in-out {
+        animation: fade-in-out 1.6s ease-in-out forwards;
+    }
 </style>
